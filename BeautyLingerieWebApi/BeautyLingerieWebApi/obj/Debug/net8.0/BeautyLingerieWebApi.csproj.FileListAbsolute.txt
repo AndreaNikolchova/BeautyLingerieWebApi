@@ -30,3 +30,14 @@ C:\Users\Stanislav\Desktop\BeatyLingerie\BeautyLingerieWebApi\BeautyLingerieWebA
 C:\Users\Stanislav\Desktop\BeatyLingerie\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.pdb
 C:\Users\Stanislav\Desktop\BeatyLingerie\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.genruntimeconfig.cache
 C:\Users\Stanislav\Desktop\BeatyLingerie\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\ref\BeautyLingerieWebApi.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.csproj.AssemblyReference.cache
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.AssemblyInfoInputs.cache
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.AssemblyInfo.cs
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.csproj.CoreCompileInputs.cache
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.sourcelink.json
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\refint\BeautyLingerieWebApi.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.pdb
