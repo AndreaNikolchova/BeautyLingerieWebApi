@@ -5,6 +5,11 @@ namespace BeautyLingerieWebApi.Models
     public class OrderProduct
     {
 
+        public OrderProduct()
+        {
+                this.Id = Guid.NewGuid();
+        }
+        public Guid Id { get; set; }
         [ForeignKey(nameof(Product))]
         public Guid ProductId { get; set; }
         public Product Product { get; set; } = null!;

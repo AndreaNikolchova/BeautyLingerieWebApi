@@ -25,7 +25,7 @@
 
         [ForeignKey(nameof(Category))]
         public Guid CategoryId { get; set; }
-        public Category Type { get; set; } = null!;
+        public Category Category { get; set; } = null!;
 
         [ForeignKey(nameof(Size))]
         public Guid SizeId { get; set; }
@@ -34,5 +34,7 @@
         [ForeignKey(nameof(Color))]
         public Guid ColorId { get; set; }
         public Color Color { get; set; }
+        public ICollection<CartProduct> CartProduct { get; set; }
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

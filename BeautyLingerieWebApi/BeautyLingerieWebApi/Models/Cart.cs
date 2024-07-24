@@ -2,10 +2,9 @@
 
 namespace BeautyLingerieWebApi.Models
 {
-    public class Order
+    public class Cart
     {
-        
-        public Order()
+        public Cart()
         {
             this.Id = Guid.NewGuid();
         }
@@ -13,10 +12,7 @@ namespace BeautyLingerieWebApi.Models
         [ForeignKey(nameof(Customer))]
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
+        public ICollection<CartProduct> CartProduct { get; set; }
 
-        public decimal TotalSum { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public ICollection<OrderProduct> OrderProducts { get; set; }
-       
     }
 }
