@@ -10,10 +10,7 @@ using Models;
         }
         public void SeedDataContext()
         {
-            if (!dataContext.Products.Any())
-            {
-               
-            }
+            
         }
     }
 }
