@@ -4,12 +4,11 @@ namespace BeautyLingerieWebApi.Models
 {
     public class Order
     {
-        
         public Order()
         {
-            this.Id = Guid.NewGuid();
+            OrderId = Guid.NewGuid();
         }
-        public Guid Id { get; set; }
+        public Guid OrderId { get; set; }
         [ForeignKey(nameof(Customer))]
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }

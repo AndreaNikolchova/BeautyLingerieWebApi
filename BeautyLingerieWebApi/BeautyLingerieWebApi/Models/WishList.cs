@@ -7,10 +7,10 @@
     {
         public WishList()
         {
-            Id = Guid.NewGuid();
+            WishListId = Guid.NewGuid();
         }
         [Key]
-        public Guid Id { get; set; }
+        public Guid WishListId { get; set; }
         [ForeignKey(nameof(Customer))]
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }

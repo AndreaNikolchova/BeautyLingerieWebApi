@@ -7,10 +7,10 @@
     {
         public Product()
         {
-            Id = Guid.NewGuid();
+            ProductId = Guid.NewGuid();
         }
         [Key]
-        public Guid Id { get; set; }
+        public Guid ProductId { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;

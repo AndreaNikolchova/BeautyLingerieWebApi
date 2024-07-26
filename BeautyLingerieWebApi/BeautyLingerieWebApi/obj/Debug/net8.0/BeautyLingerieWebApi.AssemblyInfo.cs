@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BeautyLingerieWebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b69fd0019cef834187223315c21821a7e8e5601d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bce394428f666b989e5b162b0a27a6ff504af4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("BeautyLingerieWebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeautyLingerieWebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

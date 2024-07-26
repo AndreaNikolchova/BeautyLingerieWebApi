@@ -5,11 +5,11 @@
     {
         public Category()
         {
-            Id = Guid.NewGuid();
+            CategoryId = Guid.NewGuid();
         }
 
         [Key]
-        public Guid Id { get; set; }
+        public Guid CategoryId { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;

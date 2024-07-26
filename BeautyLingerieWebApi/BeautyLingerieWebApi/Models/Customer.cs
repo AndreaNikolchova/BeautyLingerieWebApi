@@ -6,27 +6,35 @@
 
     public class Customer
     {
+
         public Customer()
         {
-            Id = Guid.NewGuid();
+            CustomerId = Guid.NewGuid();
         }
-        [Key]
-        public Guid Id { get; set; }
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
-        [Required]
 
+        [Key]
+        public Guid CustomerId { get; set; }
+
+        [Required]
         public string FirstName { get; set; } = null!;
+
         [Required]
         public string LastName { get; set; } = null!;
-        [Required]
 
+        [Required]
         public string Address { get; set; } = null!;
-        [Required]
 
+        [Required]
         public string TownName { get; set; } = null!;
 
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = null!;
 
+        [Required]
+        public string PasswordHash { get; set; } = null!;
+
+        public Cart Cart { get; set; }
     }
 }
+

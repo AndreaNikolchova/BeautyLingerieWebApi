@@ -5,10 +5,10 @@
     {
         public Size()
         {
-            Id = Guid.NewGuid();
+            SizeId = Guid.NewGuid();
         }
         [Key]
-        public Guid Id { get; set; }
+        public Guid SizeId { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeautyLingerieWebApi.Models
 {
@@ -6,9 +7,10 @@ namespace BeautyLingerieWebApi.Models
     {
         public Cart()
         {
-            this.Id = Guid.NewGuid();
+            this.CardId = Guid.NewGuid();
         }
-        public Guid Id { get; set; }
+        [Key]
+        public Guid CardId { get; set; }
         [ForeignKey(nameof(Customer))]
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }

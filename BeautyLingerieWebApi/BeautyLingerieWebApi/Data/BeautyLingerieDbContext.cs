@@ -1,6 +1,7 @@
 ﻿using BeautyLingerieWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace BeautyLingerieWebApi.Data
 {
@@ -19,17 +20,15 @@ namespace BeautyLingerieWebApi.Data
         public DbSet<CartProduct> CartProducts { get; set; }
         public BeautyLingerieDbContext(DbContextOptions<BeautyLingerieDbContext> options) : base(options)
         {
-           
+
         }
-        protected override void OnModelCreating(ModelBuilder builder)        {
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<CartProduct>()
+                   .HasKey(cp => new { cp.CartId, cp.ProductId });
 
-            builder.Entity<CartProduct>().HasOne(x => x.Cart)
-                .WithMany(x => x.CartProduct)
-                .HasForeignKey(x => x.Id);
-
-            builder.Entity<OrderProduct>().HasOne(x => x.Order)
-                .WithMany(x => x.OrderProducts)
-                .HasForeignKey(x => x.Id);
+            builder.Entity<OrderProduct>()
+                .HasKey(op=> new {op.OrderId, op.ProductId});
 
 
         }

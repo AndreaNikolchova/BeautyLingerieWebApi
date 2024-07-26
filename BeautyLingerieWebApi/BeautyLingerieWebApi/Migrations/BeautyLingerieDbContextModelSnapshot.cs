@@ -24,32 +24,30 @@ namespace BeautyLingerieWebApi.Migrations
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Cart", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("CardId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("CardId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
 
                     b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.CartProduct", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CartId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("CartId", "ProductId");
 
                     b.HasIndex("ProductId");
 
@@ -58,7 +56,7 @@ namespace BeautyLingerieWebApi.Migrations
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Category", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -66,14 +64,14 @@ namespace BeautyLingerieWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Color", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("ColorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -85,18 +83,22 @@ namespace BeautyLingerieWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ColorId");
 
                     b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("CustomerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -108,24 +110,22 @@ namespace BeautyLingerieWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TownName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -138,7 +138,7 @@ namespace BeautyLingerieWebApi.Migrations
                     b.Property<decimal>("TotalSum")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("OrderId");
 
                     b.HasIndex("CustomerId");
 
@@ -147,9 +147,6 @@ namespace BeautyLingerieWebApi.Migrations
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.OrderProduct", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
@@ -159,7 +156,7 @@ namespace BeautyLingerieWebApi.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("OrderId", "ProductId");
 
                     b.HasIndex("ProductId");
 
@@ -168,7 +165,7 @@ namespace BeautyLingerieWebApi.Migrations
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Product", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -199,7 +196,7 @@ namespace BeautyLingerieWebApi.Migrations
                     b.Property<Guid>("SizeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
@@ -212,7 +209,7 @@ namespace BeautyLingerieWebApi.Migrations
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Size", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("SizeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -220,14 +217,14 @@ namespace BeautyLingerieWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("SizeId");
 
                     b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.WishList", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("WishListId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -237,7 +234,7 @@ namespace BeautyLingerieWebApi.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("WishListId");
 
                     b.HasIndex("CustomerId");
 
@@ -246,63 +243,11 @@ namespace BeautyLingerieWebApi.Migrations
                     b.ToTable("WishList");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityUser");
-                });
-
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Cart", b =>
                 {
                     b.HasOne("BeautyLingerieWebApi.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .WithOne("Cart")
+                        .HasForeignKey("BeautyLingerieWebApi.Models.Cart", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -313,7 +258,7 @@ namespace BeautyLingerieWebApi.Migrations
                 {
                     b.HasOne("BeautyLingerieWebApi.Models.Cart", "Cart")
                         .WithMany("CartProduct")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -326,17 +271,6 @@ namespace BeautyLingerieWebApi.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("BeautyLingerieWebApi.Models.Customer", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Order", b =>
@@ -354,7 +288,7 @@ namespace BeautyLingerieWebApi.Migrations
                 {
                     b.HasOne("BeautyLingerieWebApi.Models.Order", "Order")
                         .WithMany("OrderProducts")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -418,6 +352,12 @@ namespace BeautyLingerieWebApi.Migrations
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Cart", b =>
                 {
                     b.Navigation("CartProduct");
+                });
+
+            modelBuilder.Entity("BeautyLingerieWebApi.Models.Customer", b =>
+                {
+                    b.Navigation("Cart")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeautyLingerieWebApi.Models.Order", b =>
