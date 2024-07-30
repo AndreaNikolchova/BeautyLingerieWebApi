@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeautyLingerieWebApi.Models
+namespace BeautyLingerieWebApi.Data.Models
 {
     public class Cart
     {
         public Cart()
         {
-            this.CardId = Guid.NewGuid();
+            CardId = Guid.NewGuid();
         }
         [Key]
         public Guid CardId { get; set; }

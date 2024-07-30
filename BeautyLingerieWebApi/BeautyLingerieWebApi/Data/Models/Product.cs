@@ -1,4 +1,4 @@
-﻿namespace BeautyLingerieWebApi.Models
+﻿namespace BeautyLingerieWebApi.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;

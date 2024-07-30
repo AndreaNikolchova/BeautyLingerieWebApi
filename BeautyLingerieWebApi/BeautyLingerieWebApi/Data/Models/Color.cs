@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BeautyLingerieWebApi.Models
+namespace BeautyLingerieWebApi.Data.Models
 {
     public class Color
     {

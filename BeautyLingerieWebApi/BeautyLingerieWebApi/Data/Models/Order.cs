@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeautyLingerieWebApi.Models
+namespace BeautyLingerieWebApi.Data.Models
 {
     public class Order
     {
@@ -16,6 +16,6 @@ namespace BeautyLingerieWebApi.Models
         public decimal TotalSum { get; set; }
         public DateTime CreatedOn { get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; }
-       
+
     }
 }
