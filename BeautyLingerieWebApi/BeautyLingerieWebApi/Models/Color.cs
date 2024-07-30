@@ -13,7 +13,5 @@ namespace BeautyLingerieWebApi.Models
 
         [Required]
         public string Name { get; set; } = null!;
-        [Required]
-        public string HEXCode { get; set; } = null!;
     }
 }

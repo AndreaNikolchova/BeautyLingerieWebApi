@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "BeautyLingerieWebApi/1.0.0": {
         "dependencies": {
+          "AWSSDK.Extensions.NETCore.Setup": "3.7.301",
+          "AWSSDK.S3": "3.7.400.1",
           "Microsoft.EntityFrameworkCore.Design": "8.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.7",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.7",
@@ -15,6 +17,39 @@
         },
         "runtime": {
           "BeautyLingerieWebApi.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.400.1": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.400.1"
+          }
+        }
+      },
+      "AWSSDK.Extensions.NETCore.Setup/3.7.301": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.400.1",
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.7.0"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.400.1": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.400.1"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.400.1"
+          }
         }
       },
       "Azure.Core/1.35.0": {
@@ -918,6 +953,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.400.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HvaBpbj4YU6ZfKVQuN1aWq/lbvGKr5Cx5NNiM+r4hrl1nQG/qzLZhA/xAuFmc04Od0hWHWosP08lDStL2PlAMA==",
+      "path": "awssdk.core/3.7.400.1",
+      "hashPath": "awssdk.core.3.7.400.1.nupkg.sha512"
+    },
+    "AWSSDK.Extensions.NETCore.Setup/3.7.301": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hXejqa+G72kVCSmpKlNVWDEqa8KVWOFL/asgoE2mairQOnmTCv6vMxaXjJ0nQaad5/21zTdKDIfDiki5YTne1Q==",
+      "path": "awssdk.extensions.netcore.setup/3.7.301",
+      "hashPath": "awssdk.extensions.netcore.setup.3.7.301.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.400.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5wfEWcZYoa2LaVuKhmNpVjAGkG5HEMtSAKpxeogcMgfDWlSSt19h3j6QXJiwMmgPPQ/p6+sxGHkWhnrQ1C22Uw==",
+      "path": "awssdk.s3/3.7.400.1",
+      "hashPath": "awssdk.s3.3.7.400.1.nupkg.sha512"
     },
     "Azure.Core/1.35.0": {
       "type": "package",

@@ -1,6 +1,8 @@
-using Amazon.S3;
-using BeautyLingerieWebApi.Data;
 using Microsoft.EntityFrameworkCore;
+
+using Amazon.S3;
+
+using BeautyLingerieWebApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,8 @@ builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
 });
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

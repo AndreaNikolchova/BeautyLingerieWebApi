@@ -168,3 +168,6 @@ C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLinge
 C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.csproj.CopyComplete
 C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\BeautyLingerieWebApi.genruntimeconfig.cache
 C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\obj\Debug\net8.0\ref\BeautyLingerieWebApi.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\AWSSDK.Extensions.NETCore.Setup.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\AWSSDK.S3.dll
