@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "p3fDmCYyhhxmnQJ7OZMu+/gEtPI3pHkWZS+xdTekYkf2NBAOe8Iw20TDJbwwgR3yQU8lHpS5OXglVBcIXwt5Kw==",
+  "dgSpecHash": "1K4bo2XhtJnsTVm3sDE6jpgGrWEtNYTwEgg3DkKfwVEgT1FHEKgU2uqplnUMCUOVbngeMv1HXFa2hBd7L9vFOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\andre\\.nuget\\packages\\awssdk.core\\3.7.400\\awssdk.core.3.7.400.nupkg.sha512",
-    "C:\\Users\\andre\\.nuget\\packages\\awssdk.s3\\3.7.400\\awssdk.s3.3.7.400.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\awssdk.core\\3.7.400.1\\awssdk.core.3.7.400.1.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.301\\awssdk.extensions.netcore.setup.3.7.301.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\awssdk.s3\\3.7.400.1\\awssdk.s3.3.7.400.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

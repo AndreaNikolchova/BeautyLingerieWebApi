@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "AWSSDK.Core/3.7.400": {
+      "AWSSDK.Core/3.7.400.1": {
         "type": "package",
         "compile": {
           "lib/net8.0/AWSSDK.Core.dll": {
@@ -15,10 +15,29 @@
           }
         }
       },
-      "AWSSDK.S3/3.7.400": {
+      "AWSSDK.Extensions.NETCore.Setup/3.7.301": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.400, 4.0.0)"
+          "AWSSDK.Core": "3.7.300",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0"
+        },
+        "compile": {
+          "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.400.1": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.400.1, 4.0.0)"
         },
         "compile": {
           "lib/net8.0/AWSSDK.S3.dll": {
@@ -1622,15 +1641,15 @@
     }
   },
   "libraries": {
-    "AWSSDK.Core/3.7.400": {
-      "sha512": "qw+WGhxcYtZ6wc1uibOu9XXLsfUpQ1r+gWa0euFnm1e9HowQbcwvKvOqQzwBNqIBO7S5IJ26T9kV/eFiwvZAkQ==",
+    "AWSSDK.Core/3.7.400.1": {
+      "sha512": "HvaBpbj4YU6ZfKVQuN1aWq/lbvGKr5Cx5NNiM+r4hrl1nQG/qzLZhA/xAuFmc04Od0hWHWosP08lDStL2PlAMA==",
       "type": "package",
-      "path": "awssdk.core/3.7.400",
+      "path": "awssdk.core/3.7.400.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.7.400.nupkg.sha512",
+        "awssdk.core.3.7.400.1.nupkg.sha512",
         "awssdk.core.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.Core.dll",
@@ -1651,17 +1670,35 @@
         "tools/account-management.ps1"
       ]
     },
-    "AWSSDK.S3/3.7.400": {
-      "sha512": "OWCTOIDLd9tisJBigWlws3zXXU8IPc6MGracx0zojB4z0ki7ruL77ZWbj5j9j3zSVvnnLe4uOL/4w2lco/9kBw==",
+    "AWSSDK.Extensions.NETCore.Setup/3.7.301": {
+      "sha512": "hXejqa+G72kVCSmpKlNVWDEqa8KVWOFL/asgoE2mairQOnmTCv6vMxaXjJ0nQaad5/21zTdKDIfDiki5YTne1Q==",
       "type": "package",
-      "path": "awssdk.s3/3.7.400",
+      "path": "awssdk.extensions.netcore.setup/3.7.301",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.extensions.netcore.setup.3.7.301.nupkg.sha512",
+        "awssdk.extensions.netcore.setup.nuspec",
+        "images/AWSLogo.png",
+        "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.dll",
+        "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Extensions.NETCore.Setup.dll",
+        "lib/netcoreapp3.1/AWSSDK.Extensions.NETCore.Setup.pdb",
+        "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll",
+        "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.pdb"
+      ]
+    },
+    "AWSSDK.S3/3.7.400.1": {
+      "sha512": "5wfEWcZYoa2LaVuKhmNpVjAGkG5HEMtSAKpxeogcMgfDWlSSt19h3j6QXJiwMmgPPQ/p6+sxGHkWhnrQ1C22Uw==",
+      "type": "package",
+      "path": "awssdk.s3/3.7.400.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
         "analyzers/dotnet/cs/SharedAnalysisCode.dll",
-        "awssdk.s3.3.7.400.nupkg.sha512",
+        "awssdk.s3.3.7.400.1.nupkg.sha512",
         "awssdk.s3.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.S3.dll",
@@ -4606,7 +4643,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "AWSSDK.S3 >= 3.7.400",
+      "AWSSDK.Extensions.NETCore.Setup >= 3.7.301",
+      "AWSSDK.S3 >= 3.7.400.1",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.7",
@@ -4657,9 +4695,13 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "AWSSDK.Extensions.NETCore.Setup": {
+            "target": "Package",
+            "version": "[3.7.301, )"
+          },
           "AWSSDK.S3": {
             "target": "Package",
-            "version": "[3.7.400, )"
+            "version": "[3.7.400.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
