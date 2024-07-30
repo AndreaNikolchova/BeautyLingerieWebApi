@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeautyLingerieWebApi.Models
+namespace BeautyLingerieWebApi.Data.Models
 {
     public class CartProduct
     {
-      
+
         [ForeignKey(nameof(Cart))]
         public Guid CartId { get; set; }
         public Cart Cart { get; set; } = null!;

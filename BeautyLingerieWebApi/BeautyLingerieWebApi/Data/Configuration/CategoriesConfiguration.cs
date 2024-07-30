@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using BeautyLingerieWebApi.Models;
+using BeautyLingerieWebApi.Data.Models;
 
 namespace BeautyLingerieWebApi.Data.Configuration
 {

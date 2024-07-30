@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeautyLingerieWebApi.Models
+namespace BeautyLingerieWebApi.Data.Models
 {
     public class OrderProduct
-    { 
+    {
         [ForeignKey(nameof(Product))]
         public Guid ProductId { get; set; }
         public Product Product { get; set; } = null!;
