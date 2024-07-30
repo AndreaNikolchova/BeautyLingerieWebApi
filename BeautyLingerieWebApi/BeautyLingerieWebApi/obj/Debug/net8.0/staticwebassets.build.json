@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "UGNtDuev+ilOmpW71gBt0pU9SWdFoq+NOZbCtosO7HQ=",
-  "Source": "BeautyLingerieWebApi",
-  "BasePath": "_content/BeautyLingerieWebApi",
+  "Hash": "ZDUoB1EBt4KPE0LhjGtXIZibla0yUtL5yJzjPQV0xa8=",
+  "Source": "BeautyLingerie.WebApi",
+  "BasePath": "_content/BeautyLingerie.WebApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

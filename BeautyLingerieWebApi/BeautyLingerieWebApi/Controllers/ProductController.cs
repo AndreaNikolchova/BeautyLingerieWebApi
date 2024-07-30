@@ -1,4 +1,4 @@
-﻿namespace BeautyLingerieWebApi.Controllers
+﻿namespace BeautyLingerie.WebApi.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
 

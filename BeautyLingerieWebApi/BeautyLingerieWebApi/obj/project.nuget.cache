@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VKbZOBYTCkgSzH/OP55T2A2/edPPpFvxYn2WpYbehwRVKY7qhq/tQzdZW1n4uo7LJH1dysVHNFaeuzm7o3+GLw==",
+  "dgSpecHash": "8rfmBQ+LXEN5ivApmpK/i7arsUHCeX0NOTz33aTRNJMFERQbp8Fyr7FwIdi8W/2wJgHa9R1qh8cJKhqvFWl1mQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi.csproj",
+  "projectFilePath": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerie.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andre\\.nuget\\packages\\awssdk.core\\3.7.400.1\\awssdk.core.3.7.400.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.301\\awssdk.extensions.netcore.setup.3.7.301.nupkg.sha512",

@@ -4946,9 +4946,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi.csproj",
-      "projectName": "BeautyLingerieWebApi",
-      "projectPath": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi.csproj",
+      "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerie.WebApi.csproj",
+      "projectName": "BeautyLingerie.WebApi",
+      "projectPath": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerie.WebApi.csproj",
       "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\andre\\OneDrive\\Работен плот\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\BeautyLingerieWebApi\\obj\\",
       "projectStyle": "PackageReference",
