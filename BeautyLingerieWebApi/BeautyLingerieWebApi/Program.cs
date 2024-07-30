@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Amazon.S3;
 
-using BeautyLingerieWebApi.Data;
+using BeautyLingerie.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

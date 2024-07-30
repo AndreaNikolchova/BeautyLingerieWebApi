@@ -171,3 +171,11 @@ C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLinge
 C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\AWSSDK.Core.dll
 C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\AWSSDK.Extensions.NETCore.Setup.dll
 C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\AWSSDK.S3.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.Common.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.Data.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.Services.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.ViewModels.dll
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.Data.pdb
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.Services.pdb
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.Common.pdb
+C:\Users\andre\OneDrive\Работен плот\BeautyLingerieWebApi\BeautyLingerieWebApi\BeautyLingerieWebApi\bin\Debug\net8.0\BeautyLingerie.ViewModels.pdb

@@ -22,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\BeautyLingerie.Data\BeautyLingerie.Data.csproj" />
+    <ProjectReference Include="..\BeautyLingerie.Services\BeautyLingerie.Services.csproj" />
   </ItemGroup>
 
 </Project>

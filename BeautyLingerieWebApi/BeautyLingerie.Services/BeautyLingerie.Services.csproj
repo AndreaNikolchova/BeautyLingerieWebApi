@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.7.400.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BeautyLingerie.Common\BeautyLingerie.Common.csproj" />
+    <ProjectReference Include="..\BeautyLingerie.Data\BeautyLingerie.Data.csproj" />
+    <ProjectReference Include="..\BeautyLingerie.ViewModels\BeautyLingerie.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

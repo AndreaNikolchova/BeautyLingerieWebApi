@@ -2,8 +2,8 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    using BeautyLingerieWebApi.Data;
-    using BeautyLingerieWebApi.Services.MediaService;
+    using BeautyLingerie.Data;
+    using BeautyLingerie.Services.Media;
 
     [ApiController]
     [Route("api/product")]

@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyLingerieWebApi", "BeautyLingerieWebApi\BeautyLingerieWebApi.csproj", "{2B823242-491E-4CA1-BE94-5285DEE39215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeautyLingerieWebApi", "BeautyLingerieWebApi\BeautyLingerieWebApi.csproj", "{2B823242-491E-4CA1-BE94-5285DEE39215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyLingerie.Services", "BeautyLingerie.Services\BeautyLingerie.Services.csproj", "{97D91975-A617-427F-ABAB-7F0C027BE04E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyLingerie.Data", "BeautyLingerie.Data\BeautyLingerie.Data.csproj", "{0DD18684-65DE-48EE-A071-E61F9F044063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyLingerie.ViewModels", "BeautyLingerie.ViewModels\BeautyLingerie.ViewModels.csproj", "{CBBC4CA2-7991-4E24-912C-5D7E3126F84F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyLingerie.Common", "BeautyLingerie.Common\BeautyLingerie.Common.csproj", "{1E116594-19FD-496F-9333-2791B0759EBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{2B823242-491E-4CA1-BE94-5285DEE39215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B823242-491E-4CA1-BE94-5285DEE39215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B823242-491E-4CA1-BE94-5285DEE39215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D91975-A617-427F-ABAB-7F0C027BE04E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D91975-A617-427F-ABAB-7F0C027BE04E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D91975-A617-427F-ABAB-7F0C027BE04E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D91975-A617-427F-ABAB-7F0C027BE04E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DD18684-65DE-48EE-A071-E61F9F044063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DD18684-65DE-48EE-A071-E61F9F044063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DD18684-65DE-48EE-A071-E61F9F044063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DD18684-65DE-48EE-A071-E61F9F044063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBBC4CA2-7991-4E24-912C-5D7E3126F84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBBC4CA2-7991-4E24-912C-5D7E3126F84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBBC4CA2-7991-4E24-912C-5D7E3126F84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBBC4CA2-7991-4E24-912C-5D7E3126F84F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E116594-19FD-496F-9333-2791B0759EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E116594-19FD-496F-9333-2791B0759EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E116594-19FD-496F-9333-2791B0759EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E116594-19FD-496F-9333-2791B0759EBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
