@@ -2,24 +2,29 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    using BeautyLingerie.Data;
-    using BeautyLingerie.Services.Media;
+    using BeautyLingerie.Services.Product.Contacts;
+    using BeautyLingerie.ViewModels.Product;
 
     [ApiController]
-    [Route("api/product")]
-    public class ProductsController : ControllerBase
+    [Route("api/[controller]")]
+    public class ProductsController : Controller
     {
-        private readonly S3Service _s3Service;
-        private readonly BeautyLingerieDbContext _context;
+        private IProductService productService;
 
-        public ProductsController(S3Service s3Service, BeautyLingerieDbContext dbContext)
+        public ProductsController(IProductService productService)
         {
-            _s3Service = s3Service;
-            _context = dbContext;
+           this.productService = productService;
+            
+        }
+        [HttpGet]
+        [ProducesResponseType(200,Type =typeof(IEnumerable<ProductViewModel>))]
+        public async Task<IActionResult> GetAll()
+        {
+            var model = await productService.GetAllAsync();
+            return Ok(model);
         }
 
-    
-     
+
     }
 
 }

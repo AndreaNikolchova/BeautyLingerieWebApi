@@ -16,12 +16,11 @@
     public class S3Service : IS3Service
     {
         private readonly IAmazonS3 _s3Client;
-        private readonly string _bucketName;
 
-        public S3Service(IAmazonS3 s3Client, string bucketName)
+        public S3Service(IAmazonS3 s3Client)
         {
             _s3Client = s3Client;
-            _bucketName = bucketName;
+           
         }
 
         public async Task<bool> UploadFileAsync(IFormFile file, string bucketName, string? prefix)
