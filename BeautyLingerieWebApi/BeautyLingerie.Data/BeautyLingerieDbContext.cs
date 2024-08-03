@@ -1,10 +1,12 @@
 ﻿using BeautyLingerie.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace BeautyLingerie.Data
 {
-    public class BeautyLingerieDbContext : DbContext
+    public class BeautyLingerieDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }

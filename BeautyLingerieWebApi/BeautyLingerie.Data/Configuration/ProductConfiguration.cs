@@ -24,7 +24,8 @@ namespace BeautyLingerieWeb.Data.Configuration
                 ImageKey = "bikiniSeed.jpg",
                 CategoryId = Guid.Parse("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                SizeId = Guid.Parse("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"),
-                ColorId = Guid.Parse("3f3b5865-bd1e-4a21-9473-7a77d601b0f5")
+                ColorId = Guid.Parse("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
+                CreatedOn = DateTime.UtcNow,
 
             },
              new Product()
@@ -36,7 +37,8 @@ namespace BeautyLingerieWeb.Data.Configuration
                 ImageKey = "underwearSeed.jpg",
                 CategoryId = Guid.Parse("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                 SizeId = Guid.Parse("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da"),
-                ColorId =  Guid.Parse("48f0be7d-e69d-4933-b81c-0ff4b7106d5d")
+                ColorId =  Guid.Parse("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
+                CreatedOn = DateTime.UtcNow,
             },
             new Product()
             {
@@ -47,7 +49,8 @@ namespace BeautyLingerieWeb.Data.Configuration
                 ImageKey = "braSeed.jpg",
                 CategoryId = Guid.Parse("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                 SizeId = Guid.Parse("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"),
-                ColorId = Guid.Parse("37bc840f-355e-4bb2-8b79-ccca593ee1c6")
+                ColorId = Guid.Parse("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
+                CreatedOn = DateTime.UtcNow,
             },
              new Product()
             {
@@ -58,7 +61,8 @@ namespace BeautyLingerieWeb.Data.Configuration
                 ImageKey = "othersSeed.jpg",
                 CategoryId = Guid.Parse("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                 SizeId = Guid.Parse("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"),
-                ColorId =Guid.Parse("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6")
+                ColorId =Guid.Parse("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
+                CreatedOn = DateTime.UtcNow,
             },
             };
             return products.ToArray();

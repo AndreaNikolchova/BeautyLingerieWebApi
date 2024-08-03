@@ -5,6 +5,7 @@ using Amazon.S3;
 using BeautyLingerie.Data;
 using BeautyLingerie.WebApi.Extention;
 using BeautyLingerie.Services.Product.Contacts;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,11 @@ builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddAuthorization();
+
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+        .AddEntityFrameworkStores<BeautyLingerieDbContext>();
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
 builder.Services.AddAWSService<IAmazonS3>();
@@ -36,7 +42,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-
+app.MapIdentityApi<IdentityUser>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
