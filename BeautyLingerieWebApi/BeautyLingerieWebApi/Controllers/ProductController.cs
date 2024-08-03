@@ -4,10 +4,10 @@
 
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;
-    using Amazon.S3.Model.Internal.MarshallTransformations;
+  
 
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     public class ProductsController : Controller
     {
         private IProductService productService;
@@ -16,7 +16,7 @@
         {
             this.productService = productService;
 
-        }
+        } 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ProductViewModel>))]
         public async Task<IActionResult> GetAll()
