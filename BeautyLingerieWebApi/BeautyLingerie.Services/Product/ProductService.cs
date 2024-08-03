@@ -77,5 +77,24 @@
             return product;
 
         }
+        public async Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName)
+        {
+
+            List<ProductViewModel> products = await dbContext.Products.Where(p=> p.Category.Name == categoryName).Select(p => new ProductViewModel
+            {
+                Id = p.ProductId,
+                Name = p.Name,
+                ImageUrl = p.ImageKey,
+                Price = p.Price,
+            }
+            ).AsNoTracking()
+            .ToListAsync();
+            foreach (var item in products)
+            {
+                item.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", item.ImageUrl);
+            }
+            return products;
+        }
+
     }
 }

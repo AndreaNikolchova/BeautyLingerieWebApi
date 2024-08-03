@@ -41,6 +41,14 @@
             return Ok(model);
         }
 
+        [HttpGet("Category/{categoryName}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ProductViewModel>))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetProductsByCategoryName(string categoryName)
+        {
+            var model = await productService.GetProductsByCategoryNameAsync(categoryName);
+            return Ok(model);
+        }
     }
 
 }
