@@ -1,5 +1,6 @@
 ﻿namespace BeautyLingerie.Data.Models
 {
+    using BeautyLingerie.Common;
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -19,17 +20,12 @@
         public IdentityUser User { get; set; } = null!;
       
         [Required]
+        [MaxLength(ValidationalConstants.CustomerNameMaxSize)]
         public string FirstName { get; set; } = null!;
 
         [Required]
+        [MaxLength(ValidationalConstants.CustomerNameMaxSize)]
         public string LastName { get; set; } = null!;
-
-        [Required]
-        public string Address { get; set; } = null!;
-
-        [Required]
-        public string TownName { get; set; } = null!;
-
         public Cart Cart { get; set; }
     }
 }

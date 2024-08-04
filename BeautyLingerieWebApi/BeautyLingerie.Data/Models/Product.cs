@@ -3,6 +3,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using BeautyLingerie.Common;
+
     public class Product
     {
         public Product()
@@ -13,8 +15,10 @@
         public Guid ProductId { get; set; }
 
         [Required]
+        [MaxLength(ValidationalConstants.ProductNameMaxLenght)]
         public string Name { get; set; } = null!;
         [Required]
+        [MaxLength(ValidationalConstants.ProductDescriptionMaxLenght)]
         public string Description { get; set; } = null!;
         [Required]
         public decimal Price { get; set; }

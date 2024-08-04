@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BeautyLingerie.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace BeautyLingerie.Data.Models
 {
@@ -12,6 +13,7 @@ namespace BeautyLingerie.Data.Models
         public Guid ColorId { get; set; }
 
         [Required]
+        [MaxLength(ValidationalConstants.ColorNameMaxSize)]
         public string Name { get; set; } = null!;
     }
 }
