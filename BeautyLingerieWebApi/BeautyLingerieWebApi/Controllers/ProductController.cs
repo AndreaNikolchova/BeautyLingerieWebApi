@@ -49,6 +49,14 @@
             var model = await productService.GetProductsByCategoryNameAsync(categoryName);
             return Ok(model);
         }
+        [HttpGet("NewArrivals")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ProductViewModel>))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> getNewArrivals()
+        {
+            var model = await productService.GetNewestProducts();
+            return Ok(model);
+        }
     }
 
 }

@@ -100,7 +100,7 @@ namespace BeautyLingerie.Data.Migrations
 
                     b.HasKey("ColorId");
 
-                    b.ToTable("Color");
+                    b.ToTable("Colors");
 
                     b.HasData(
                         new
@@ -313,10 +313,10 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("78e401f0-6377-4dec-833a-a13d7c4006c6"),
+                            ProductId = new Guid("a9d6314f-fb39-4fb6-ab40-032010d3358b"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2024, 8, 4, 7, 58, 2, 158, DateTimeKind.Utc).AddTicks(7137),
+                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9091),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
                             ImageKey = "bikiniSeed.jpg",
                             Name = "Tropical Breeze Bikini",
@@ -326,10 +326,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("727a4ce0-a41a-484a-b50a-fe6085bcbe2b"),
+                            ProductId = new Guid("8941c16b-adbb-4883-89c4-6eca223b37f3"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2024, 8, 4, 7, 58, 2, 158, DateTimeKind.Utc).AddTicks(7152),
+                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9109),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
                             ImageKey = "underwearSeed.jpg",
                             Name = "Beautiful Pink Lace Underwear",
@@ -339,10 +339,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("1016cdc5-e0e0-4c94-b07a-509bbd270806"),
+                            ProductId = new Guid("96a9c366-a244-4c4f-9107-0b9f8a0cc2ca"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2024, 8, 4, 7, 58, 2, 158, DateTimeKind.Utc).AddTicks(7158),
+                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9118),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
                             ImageKey = "braSeed.jpg",
                             Name = "Elegant White Lace Bra",
@@ -352,10 +352,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("acf5fd46-415a-4699-921b-2fad7c4b924f"),
+                            ProductId = new Guid("c4994d44-3f46-44c5-ba09-30d32dfbf113"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2024, 8, 4, 7, 58, 2, 158, DateTimeKind.Utc).AddTicks(7163),
+                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9126),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
                             ImageKey = "othersSeed.jpg",
                             Name = "Chic Black Lace Tank Top",
@@ -378,7 +378,7 @@ namespace BeautyLingerie.Data.Migrations
 
                     b.HasKey("SizeId");
 
-                    b.ToTable("Size");
+                    b.ToTable("Sizes");
 
                     b.HasData(
                         new

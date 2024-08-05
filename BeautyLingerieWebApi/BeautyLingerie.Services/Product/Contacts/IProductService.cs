@@ -7,5 +7,6 @@
         Task<ProductDetailsViewModel> GetProductByIdAsync(Guid productId);
         Task<ProductDetailsViewModel> GetProductByNameAsync(string name);
         Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName);
+        Task<IEnumerable<ProductViewModel>> GetNewestProducts();
     }
 }

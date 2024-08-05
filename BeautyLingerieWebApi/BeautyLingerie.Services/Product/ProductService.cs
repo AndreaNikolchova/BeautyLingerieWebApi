@@ -96,6 +96,22 @@
             return products;
         }
 
-       
+        public async Task<IEnumerable<ProductViewModel>> GetNewestProducts()
+        {
+
+            List<ProductViewModel> products = await dbContext.Products.OrderByDescending(p => p.CreatedOn).Select(p => new ProductViewModel { 
+                Id = p.ProductId,
+                Name = p.Name,
+                ImageUrl = p.ImageKey,
+                Price = p.Price,
+            }
+            ).AsNoTracking()
+            .ToListAsync();
+            foreach (var item in products)
+            {
+                item.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", item.ImageUrl);
+            }
+            return products;
+        }
     }
 }
