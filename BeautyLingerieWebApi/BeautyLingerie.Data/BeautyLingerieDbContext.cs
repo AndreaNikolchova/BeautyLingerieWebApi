@@ -12,7 +12,7 @@ namespace BeautyLingerie.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Color> Colors { get; set; }
-        public DbSet<Color> Sizes { get; set; }
+        public DbSet<Size> Sizes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<WishList> WishList { get; set; }
