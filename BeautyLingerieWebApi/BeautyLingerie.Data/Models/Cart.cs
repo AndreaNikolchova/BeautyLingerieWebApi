@@ -8,6 +8,7 @@ namespace BeautyLingerie.Data.Models
         public Cart()
         {
             CardId = Guid.NewGuid();
+            this.CartProduct = new HashSet<CartProduct>();
         }
         [Key]
         public Guid CardId { get; set; }

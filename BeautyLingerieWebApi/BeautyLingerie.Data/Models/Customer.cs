@@ -7,7 +7,6 @@
 
     public class Customer
     {
-
         public Customer()
         {
             CustomerId = Guid.NewGuid();

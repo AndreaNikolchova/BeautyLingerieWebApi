@@ -4,6 +4,7 @@ using BeautyLingerie.Data;
 using BeautyLingerie.WebApi.Extention;
 using BeautyLingerie.Services.Product.Contacts;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,36 @@ builder.Services.AddControllers();
 
 // Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+    {
+        Title = "BeautyLingerieApi",
+        Version="v1",
+    });
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
+    {
+        In= Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Please enter a token",
+        Name = "Authorization",
+        Type= Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+    {{
+        new OpenApiSecurityScheme
+        {
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer",
+            }
+        }
+        ,[]
+        }
+    }) ;
+});
 
 // Configure Entity Framework and Identity
 builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
@@ -38,7 +68,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalhost5175",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173")
+            policy.WithOrigins("http://localhost:5175")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
