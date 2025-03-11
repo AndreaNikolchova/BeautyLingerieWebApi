@@ -1,4 +1,5 @@
 ﻿using BeautyLingerie.Data.Models;
+using BeautyLingerieWeb.Data.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -14,28 +15,21 @@ namespace BeautyLingerie.Data
         public DbSet<Color> Colors { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<WishList> WishList { get; set; }
-        public DbSet<Cart> Cart { get; set; }
-        public DbSet<CartProduct> CartProducts { get; set; }
         public BeautyLingerieDbContext(DbContextOptions<BeautyLingerieDbContext> options) : base(options)
         {
 
         }
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.Entity<CartProduct>()
-                   .HasKey(cp => new { cp.CartId, cp.ProductId });
+            base.OnModelCreating(modelBuilder);
 
-            builder.Entity<OrderProduct>()
-                .HasKey(op=> new {op.OrderId, op.ProductId});
-            Assembly configAssembly = Assembly.GetAssembly(typeof(BeautyLingerieDbContext)) ?? Assembly.GetExecutingAssembly();
-            builder.ApplyConfigurationsFromAssembly(configAssembly);
-            base.OnModelCreating(builder);
-
+           
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ColorConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoriesConfiguration());
+            modelBuilder.ApplyConfiguration(new SizesConfiguration());
 
         }
-
-
     }
 }

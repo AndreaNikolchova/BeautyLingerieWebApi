@@ -6,16 +6,13 @@ namespace BeautyLingerie.Data.Models
     {
         public Order()
         {
-            OrderId = Guid.NewGuid();
+            this.OrderId = Guid.NewGuid();
+            this.Products =  new List<Product>();   
         }
         public Guid OrderId { get; set; }
-        [ForeignKey(nameof(Customer))]
-        public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; }
-
         public decimal TotalSum { get; set; }
         public DateTime CreatedOn { get; set; }
-        public ICollection<OrderProduct> OrderProducts { get; set; }
+        public IReadOnlyCollection<Product> Products { get; set; }
 
     }
 }

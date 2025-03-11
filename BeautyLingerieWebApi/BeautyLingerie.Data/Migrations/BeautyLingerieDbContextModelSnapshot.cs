@@ -22,38 +22,6 @@ namespace BeautyLingerie.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Cart", b =>
-                {
-                    b.Property<Guid>("CardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CardId");
-
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
-
-                    b.ToTable("Cart");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.CartProduct", b =>
-                {
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CartId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartProducts");
-                });
-
             modelBuilder.Entity("BeautyLingerie.Data.Models.Category", b =>
                 {
                     b.Property<Guid>("CategoryId")
@@ -231,35 +199,12 @@ namespace BeautyLingerie.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("TotalSum")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CustomerId");
-
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.OrderProduct", b =>
-                {
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderProducts");
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
@@ -291,6 +236,9 @@ namespace BeautyLingerie.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -306,6 +254,8 @@ namespace BeautyLingerie.Data.Migrations
 
                     b.HasIndex("ColorId");
 
+                    b.HasIndex("OrderId");
+
                     b.HasIndex("SizeId");
 
                     b.ToTable("Products");
@@ -313,10 +263,10 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("a9d6314f-fb39-4fb6-ab40-032010d3358b"),
+                            ProductId = new Guid("48746951-61da-415d-802c-692de3a86c5b"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9091),
+                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4636),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
                             ImageKey = "bikiniSeed.jpg",
                             Name = "Tropical Breeze Bikini",
@@ -326,10 +276,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("8941c16b-adbb-4883-89c4-6eca223b37f3"),
+                            ProductId = new Guid("6b9dbbfb-b003-4922-bfa0-9bcbc9c96ed3"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9109),
+                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4680),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
                             ImageKey = "underwearSeed.jpg",
                             Name = "Beautiful Pink Lace Underwear",
@@ -339,10 +289,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("96a9c366-a244-4c4f-9107-0b9f8a0cc2ca"),
+                            ProductId = new Guid("db473dd2-5392-4422-b176-23d0cc786750"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9118),
+                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4690),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
                             ImageKey = "braSeed.jpg",
                             Name = "Elegant White Lace Bra",
@@ -352,10 +302,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("c4994d44-3f46-44c5-ba09-30d32dfbf113"),
+                            ProductId = new Guid("2bddd03a-d568-47a3-8b4b-21641aec2acb"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2024, 8, 5, 19, 49, 18, 348, DateTimeKind.Utc).AddTicks(9126),
+                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4699),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
                             ImageKey = "othersSeed.jpg",
                             Name = "Chic Black Lace Tank Top",
@@ -627,36 +577,6 @@ namespace BeautyLingerie.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Cart", b =>
-                {
-                    b.HasOne("BeautyLingerie.Data.Models.Customer", "Customer")
-                        .WithOne("Cart")
-                        .HasForeignKey("BeautyLingerie.Data.Models.Cart", "CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.CartProduct", b =>
-                {
-                    b.HasOne("BeautyLingerie.Data.Models.Cart", "Cart")
-                        .WithMany("CartProduct")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeautyLingerie.Data.Models.Product", "Product")
-                        .WithMany("CartProduct")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("BeautyLingerie.Data.Models.Customer", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -666,36 +586,6 @@ namespace BeautyLingerie.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Order", b =>
-                {
-                    b.HasOne("BeautyLingerie.Data.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.OrderProduct", b =>
-                {
-                    b.HasOne("BeautyLingerie.Data.Models.Order", "Order")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeautyLingerie.Data.Models.Product", "Product")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
@@ -711,6 +601,10 @@ namespace BeautyLingerie.Data.Migrations
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BeautyLingerie.Data.Models.Order", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("BeautyLingerie.Data.Models.Size", "Size")
                         .WithMany()
@@ -795,27 +689,9 @@ namespace BeautyLingerie.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Cart", b =>
-                {
-                    b.Navigation("CartProduct");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Customer", b =>
-                {
-                    b.Navigation("Cart")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BeautyLingerie.Data.Models.Order", b =>
                 {
-                    b.Navigation("OrderProducts");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
-                {
-                    b.Navigation("CartProduct");
-
-                    b.Navigation("OrderProducts");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,7 +25,7 @@
         [Required]
         [MaxLength(ValidationalConstants.CustomerNameMaxSize)]
         public string LastName { get; set; } = null!;
-        public Cart Cart { get; set; }
+      
     }
 }
 

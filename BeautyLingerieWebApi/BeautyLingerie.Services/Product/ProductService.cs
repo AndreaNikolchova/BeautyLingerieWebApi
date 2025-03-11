@@ -114,68 +114,7 @@
             }
             return products;
         }
-        public async Task AddToCartAsync(Guid productId, string userId)
-        {
-            if (dbContext.Products.Where(p => p.ProductId == productId).FirstOrDefault() == null)
-            {
-                throw new ArgumentException("No exsisting product");
-            }
-            Cart cart = this.dbContext.Cart.Where(c => c.Customer.UserId == userId).FirstOrDefault();
-            if (cart == null)
-            {
-                Customer customer = this.dbContext.Customers.Where(c => c.UserId == userId).FirstOrDefault();
-                if (customer == null)
-                {
-                    customer = new Customer()
-                    {
-                        UserId = userId,
-                    };
-
-                    dbContext.Customers.Add(customer);
-
-                }
-                cart = new Cart()
-                {
-                    Customer = customer
-                };
-                dbContext.Cart.Add(cart);
-            }
-            if (dbContext.CartProducts.Any(cp => cp.CartId == cart.CardId && cp.ProductId == productId))
-            {
-                throw new ArgumentException("Product is already in the cart");
-            }
-
-
-            var product = dbContext.Products.First(p => p.ProductId == productId);
-            var cartProduct = new CartProduct { Cart = cart, CartId = cart.CardId, Product = product, ProductId = product.ProductId };
-            cart.CartProduct.Add(cartProduct);
-
-
-            await dbContext.SaveChangesAsync();
-
-        }
-        public async Task<IEnumerable<ProductDetailsViewModel>> GetProductsInCartAsync(string userId)
-
-        {
-            List<ProductDetailsViewModel> products = await dbContext.CartProducts.Where(p => p.Cart.Customer.UserId == userId).Select(p => new ProductDetailsViewModel
-            {
-                Id = p.Product.ProductId,
-                Name = p.Product.Name,
-                Price = p.Product.Price,
-                Description = p.Product.Description,
-                ColorName = p.Product.Color.Name,
-                Size = p.Product.Size.Name,
-                ImageUrl = p.Product.ImageKey
-
-            }
-          ).AsNoTracking()
-          .ToListAsync();
-            foreach (var item in products)
-            {
-                item.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", item.ImageUrl);
-            }
-            return products;
-        }
+     
 
 
     }

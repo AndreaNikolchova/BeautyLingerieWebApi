@@ -58,47 +58,7 @@
             var model = await productService.GetNewestProducts();
             return Ok(model);
         }
-        [Authorize]
-        [HttpPost("AddToCart")]
-        public async Task<IActionResult> AddToCart([FromBody] string productId)
-        {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-            try
-            {
-                await productService.AddToCartAsync(Guid.Parse(productId), userId);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-
-            return Ok();
-        }
-        [Authorize]
-        [HttpGet("Cart")]
-        public async Task<IActionResult> getCartProducts()
-        {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
-            {
-                return Unauthorized(new { });
-            }
-            try
-            {
-                var products  = await productService.GetProductsInCartAsync(userId);
-                return Ok(products);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-
-
-        }
+       
     }
 
 }

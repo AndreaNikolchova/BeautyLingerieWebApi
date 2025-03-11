@@ -7,7 +7,7 @@
     {
         public WishList()
         {
-            WishListId = Guid.NewGuid();
+            this.WishListId = Guid.NewGuid();
         }
         [Key]
         public Guid WishListId { get; set; }

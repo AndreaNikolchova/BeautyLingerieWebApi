@@ -38,8 +38,7 @@
         [ForeignKey(nameof(Color))]
         public Guid ColorId { get; set; }
         public Color Color { get; set; }
-        public ICollection<CartProduct> CartProduct { get; set; }
-        public ICollection<OrderProduct> OrderProducts { get; set; }
+    
         public DateTime CreatedOn { get; set; }
 
     }

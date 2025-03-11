@@ -1,13 +1,13 @@
-﻿namespace BeautyLingerie.Services.Product.Contacts
+﻿using BeautyLingerie.ViewModels.Product;
+
+namespace BeautyLingerie.Services.Order.Contracts
 {
-    using BeautyLingerie.ViewModels.Product;
-    public interface IProductService
+    public interface IOrderService
     {
-        Task<IEnumerable<ProductViewModel>> GetAllAsync();
+        Task<IEnumerable<OrderViewModel>> GetAllAsync();
         Task<ProductDetailsViewModel> GetProductByIdAsync(Guid productId);
         Task<ProductDetailsViewModel> GetProductByNameAsync(string name);
         Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName);
         Task<IEnumerable<ProductViewModel>> GetNewestProducts();
-
     }
 }

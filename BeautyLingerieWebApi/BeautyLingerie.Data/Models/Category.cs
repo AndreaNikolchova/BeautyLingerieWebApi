@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     public class Category
     {
+     
         public Category()
         {
             CategoryId = Guid.NewGuid();
