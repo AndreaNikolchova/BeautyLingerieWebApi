@@ -62,6 +62,9 @@
         }
         public async Task<ProductDetailsViewModel> GetProductByNameAsync(string name)
         {
+            try
+            {
+
             var product = await dbContext.Products.Where(p => p.Name == name).Select(p => new ProductDetailsViewModel
             {
                 Id = p.ProductId,
@@ -73,12 +76,14 @@
                 CatgeryName = p.Category.Name,
                 Size = p.Size.Name
             }).FirstOrDefaultAsync();
-            if (product == null)
-            {
-                throw new ArgumentException("No product found with this name");
-            }
+           
             product.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", product.ImageUrl);
             return product;
+            }
+            catch
+            {
+                return null;
+            }
 
         }
         public async Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName)

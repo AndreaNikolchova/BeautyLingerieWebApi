@@ -25,10 +25,17 @@
         }
         [HttpGet("{productId}")]
         [ProducesResponseType(200, Type = typeof(ProductDetailsViewModel))]
-        [ProducesResponseType(400)]
         public async Task<IActionResult> GetProductById(Guid productId)
         {
             ProductDetailsViewModel model = await productService.GetProductByIdAsync(productId);
+            return Ok(model);
+        }
+
+        [HttpGet("Name/{productName}")]
+        [ProducesResponseType(200, Type = typeof(ProductDetailsViewModel))]
+        public async Task<IActionResult> GetProductByName(string productName)
+        {
+            ProductDetailsViewModel model = await productService.GetProductByNameAsync(productName);
             return Ok(model);
         }
 
@@ -43,7 +50,7 @@
         [HttpGet("NewArrivals")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ProductViewModel>))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> getNewArrivals()
+        public async Task<IActionResult> GetNewArrivals()
         {
             var model = await productService.GetNewestProducts();
             return Ok(model);
