@@ -104,7 +104,6 @@
             }
             return products;
         }
-
         public async Task<IEnumerable<ProductViewModel>> GetNewestProducts()
         {
 
@@ -124,7 +123,9 @@
             return products;
         }
 
-
-
+        public Task AddCustomerAsync(AddProductViewModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
