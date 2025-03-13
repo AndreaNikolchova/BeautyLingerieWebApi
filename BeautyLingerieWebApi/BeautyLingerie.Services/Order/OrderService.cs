@@ -32,7 +32,7 @@ namespace BeautyLingerie.Services.Order
                 .AsNoTracking()
                 .ToListAsync();
 
-            return orders;
+                return orders;
             }
             catch
             {
@@ -42,13 +42,21 @@ namespace BeautyLingerie.Services.Order
 
         public async Task<OrderViewModel> GetOrderByIdAsync(Guid id)
         {
-            return await dbContext.Orders.Where(o => o.OrderId == id).Select(o => new OrderViewModel
+            try
             {
-                Id = o.OrderId,
-                CreatedOn = o.CreatedOn,
-                TotalSum = o.TotalSum,
+                return await dbContext.Orders.Where(o => o.OrderId == id).Select(o => new OrderViewModel
+                {
+                    Id = o.OrderId,
+                    CreatedOn = o.CreatedOn,
+                    TotalSum = o.TotalSum,
 
-            }).FirstOrDefaultAsync();
+                }).FirstOrDefaultAsync();
+
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
