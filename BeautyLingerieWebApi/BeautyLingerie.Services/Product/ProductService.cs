@@ -36,23 +36,28 @@
         }
         public async Task<ProductDetailsViewModel> GetProductByIdAsync(Guid productId)
         {
-            var product = await dbContext.Products.Where(p => p.ProductId == productId).Select(p => new ProductDetailsViewModel
+            try
             {
-                Id = p.ProductId,
-                Name = p.Name,
-                Description = p.Description,
-                ImageUrl = p.ImageKey,
-                Price = p.Price,
-                ColorName = p.Color.Name,
-                CatgeryName = p.Category.Name,
-                Size = p.Size.Name
-            }).FirstOrDefaultAsync();
-            if (product == null)
-            {
-                throw new ArgumentException("No product found with this id");
+                var product = await dbContext.Products.Where(p => p.ProductId == productId).Select(p => new ProductDetailsViewModel
+                {
+                    Id = p.ProductId,
+                    Name = p.Name,
+                    Description = p.Description,
+                    ImageUrl = p.ImageKey,
+                    Price = p.Price,
+                    ColorName = p.Color.Name,
+                    CatgeryName = p.Category.Name,
+                    Size = p.Size.Name
+                }).FirstOrDefaultAsync();
+
+                product.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", product.ImageUrl);
+                return product;
+
             }
-            product.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", product.ImageUrl);
-            return product;
+            catch
+            {
+                return null;
+            }
 
         }
         public async Task<ProductDetailsViewModel> GetProductByNameAsync(string name)
@@ -113,7 +118,7 @@
             }
             return products;
         }
-     
+
 
 
     }

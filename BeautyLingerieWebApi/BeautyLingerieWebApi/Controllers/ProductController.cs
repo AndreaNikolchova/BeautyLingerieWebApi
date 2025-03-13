@@ -28,15 +28,7 @@
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetProductById(Guid productId)
         {
-            ProductDetailsViewModel model;
-            try
-            {
-                model = await productService.GetProductByIdAsync(productId);
-            }
-            catch (ArgumentException ae)
-            {
-                return NotFound(ae.Message);
-            }
+            ProductDetailsViewModel model = await productService.GetProductByIdAsync(productId);
             return Ok(model);
         }
 
