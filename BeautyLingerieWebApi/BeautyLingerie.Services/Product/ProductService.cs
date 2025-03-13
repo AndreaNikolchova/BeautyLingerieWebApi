@@ -1,7 +1,6 @@
 ﻿namespace BeautyLingerie.Services.Product
 {
     using BeautyLingerie.Data;
-    using BeautyLingerie.Data.Models;
     using BeautyLingerie.Services.Media.Contracts;
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;

@@ -1,12 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BeautyLingerie.Services.Order.Contracts;
+using BeautyLingerie.Services.Product;
+using BeautyLingerie.Services.Product.Contacts;
+using BeautyLingerie.ViewModels.Order;
+using BeautyLingerie.ViewModels.Product;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BeautyLingerie.WebApi.Controllers
 {
+    [ApiController]
+    [Route("/[controller]")]
     public class OrderController : Controller
     {
-        public IActionResult Index()
+        private IOrderService orderService;
+
+        public OrderController(IOrderService orderService)
         {
-            return View();
+            this.orderService = orderService;
+
+        }
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<OrderViewModel>))]
+        public async Task<IActionResult> GetAll()
+        {
+            var model = await orderService.GetAllAsync();
+            return Ok(model);
+        }
+        [HttpGet("{orderId}")]
+        [ProducesResponseType(200, Type = typeof(OrderViewModel))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetOrderById(Guid orderId)
+        {
+            var model = await orderService.GetOrderByIdAsync(orderId);
+            return Ok(model);
         }
     }
 }

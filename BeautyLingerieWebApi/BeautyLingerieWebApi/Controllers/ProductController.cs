@@ -4,8 +4,6 @@
 
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;
-    using Microsoft.AspNetCore.Authorization;
-    using System.Security.Claims;
 
     [ApiController]
     [Route("/[controller]")]
