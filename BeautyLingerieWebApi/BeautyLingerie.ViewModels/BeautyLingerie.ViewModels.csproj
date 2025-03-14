@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BeautyLingerie.Common\BeautyLingerie.Common.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,5 @@
 ﻿using BeautyLingerie.Services.Order.Contracts;
-using BeautyLingerie.Services.Product;
-using BeautyLingerie.Services.Product.Contacts;
 using BeautyLingerie.ViewModels.Order;
-using BeautyLingerie.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeautyLingerie.WebApi.Controllers

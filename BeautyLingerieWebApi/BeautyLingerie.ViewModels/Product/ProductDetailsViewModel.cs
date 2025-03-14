@@ -1,8 +1,13 @@
-﻿namespace BeautyLingerie.ViewModels.Product
+﻿using BeautyLingerie.Common;
+using System.ComponentModel.DataAnnotations;
+
+namespace BeautyLingerie.ViewModels.Product
 {
     public class ProductDetailsViewModel
     {
+       
         public Guid Id { get; set; }
+        
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string ImageUrl {  get; set; } = null!; 
