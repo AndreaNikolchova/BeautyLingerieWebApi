@@ -1,11 +1,12 @@
 ﻿namespace BeautyLingerie.Services.Product
 {
     using BeautyLingerie.Data;
+    using BeautyLingerie.Data.Models;
     using BeautyLingerie.Services.Media.Contracts;
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;
     using Microsoft.EntityFrameworkCore;
-
+   
     public class ProductService : IProductService
     {
         public BeautyLingerieDbContext dbContext { get; set; }
@@ -123,9 +124,28 @@
             return products;
         }
 
-        public Task AddCustomerAsync(AddProductViewModel model)
+        public async Task AddCustomerAsync(AddProductViewModel model)
         {
-            throw new NotImplementedException();
+            var category = await this.dbContext.Categories.Where(c => c.Name == model.Category).FirstOrDefaultAsync();
+            var size = await this.dbContext.Sizes.Where(s=>s.Name == model.Size).FirstOrDefaultAsync();
+           
+            //var picture = await this.mediaService.UploadFileAsync(model.Photo, model.Name);
+
+
+
+            Product product = new Product()
+            {
+                Name = model.Name,
+                //ImageUrl = picture,
+                Description = model.Description,
+                Size = size,
+                Quantity = model.Quantity,
+                Price = model.Price,
+            
+            };
+           
+            await dbContext.Products.AddAsync(product);
+            await dbContext.SaveChangesAsync();
         }
     }
 }
