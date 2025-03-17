@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 #Important constants
 appsettings.Development.json
+appsettings.json
