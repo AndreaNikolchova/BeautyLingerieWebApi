@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using BeautyLingerie.Data.Models;
 
-namespace BeautyLingerieWeb.Data.Configuration
+namespace BeautyLingerie.Data.Configuration
 {
     public class ColorConfiguration : IEntityTypeConfiguration<Color>
     {

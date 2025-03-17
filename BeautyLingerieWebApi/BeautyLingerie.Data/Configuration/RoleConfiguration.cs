@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace BeautyLingerieWeb.Data.Configuration
+namespace BeautyLingerie.Data.Configuration
 {
     public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
     {
