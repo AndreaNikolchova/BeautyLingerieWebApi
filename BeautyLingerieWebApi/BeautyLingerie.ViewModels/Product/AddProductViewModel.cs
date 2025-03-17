@@ -6,7 +6,6 @@
 
     public class AddProductViewModel
     {
-        public Guid Id { get; set; }
         [Required]
         [MaxLength(ValidationalConstants.ProductNameMaxLenght)]
         public string Name { get; set; } = null!;

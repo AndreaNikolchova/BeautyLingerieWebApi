@@ -4,6 +4,7 @@
 
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;
+    using Microsoft.AspNetCore.Authorization;
 
     [ApiController]
     [Route("/[controller]")]
@@ -41,7 +42,7 @@
 
         [HttpGet("Category/{categoryName}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ProductViewModel>))]
-        [ProducesResponseType(400)]
+   
         public async Task<IActionResult> GetProductsByCategoryName(string categoryName)
         {
             var model = await productService.GetProductsByCategoryNameAsync(categoryName);
@@ -49,13 +50,19 @@
         }
         [HttpGet("NewArrivals")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ProductViewModel>))]
-        [ProducesResponseType(400)]
+      
         public async Task<IActionResult> GetNewArrivals()
         {
             var model = await productService.GetNewestProducts();
             return Ok(model);
         }
-       
+        [Authorize(Roles = "Admin")]
+        [HttpPost("Add")]
+        public async Task<IActionResult> AddNewProduct([FromBody] AddProductViewModel product)
+        {
+            return Ok();
+        }
+
     }
 
 }
