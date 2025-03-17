@@ -1,21 +1,20 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using BeautyLingerie.Services.Admin.Contracts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using System;
 
-namespace BeautyLingerieWeb.Data.Configuration
+
+namespace BeautyLingerie.Services.Admin
 {
-    public class AdminConfiguration : IEntityTypeConfiguration<IdentityUser>
+    public class AdminSeedService : IAdminSeedService
     {
         private readonly IConfiguration _configuration;
 
-        public AdminConfiguration(IConfiguration configuration)
+        public AdminSeedService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public void Configure(EntityTypeBuilder<IdentityUser> builder)
+        public IdentityUser CreateAdminUser()
         {
             var adminEmail = _configuration["Admin:Email"];
             var adminPassword = _configuration["Admin:Password"];
@@ -33,7 +32,8 @@ namespace BeautyLingerieWeb.Data.Configuration
             var passwordHasher = new PasswordHasher<IdentityUser>();
             admin.PasswordHash = passwordHasher.HashPassword(admin, adminPassword);
 
-            builder.HasData(admin);
+            return admin;
         }
+
     }
 }

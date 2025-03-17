@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BeautyLingerie.Common\BeautyLingerie.Common.csproj" />
+    <ProjectReference Include="..\BeautyLingerie.Services\BeautyLingerie.Services.csproj" />
   </ItemGroup>
 
 </Project>
