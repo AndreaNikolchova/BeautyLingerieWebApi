@@ -5,16 +5,11 @@ using BeautyLingerie.WebApi.Extention;
 using BeautyLingerie.Services.Product.Contacts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-using BeautyLingerie.Configuration.Admin.Contracts;
-using BeautyLingerie.Configuration.Admin;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 
-// Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -47,7 +42,6 @@ builder.Services.AddSwaggerGen(options =>
     }) ;
 });
 
-// Configure Entity Framework and Identity
 builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -64,15 +58,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<BeautyLingerieDbContext>()
 .AddDefaultTokenProviders();
 
-
-// Configure AWS Services
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
 builder.Services.AddAWSService<IAmazonS3>();
 
-// Configure Application Services
 builder.Services.AddApplicationServices(typeof(IProductService));
-builder.Services.AddScoped<IAdminSeedService, AdminSeedService>();
-// Configure CORS
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost5173",
@@ -86,7 +76,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
