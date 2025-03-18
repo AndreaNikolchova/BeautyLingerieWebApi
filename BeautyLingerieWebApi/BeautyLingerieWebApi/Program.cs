@@ -5,6 +5,8 @@ using BeautyLingerie.WebApi.Extention;
 using BeautyLingerie.Services.Product.Contacts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using BeautyLingerie.Configuration.Admin.Contracts;
+using BeautyLingerie.Configuration.Admin;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,10 +52,18 @@ builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 builder.Services.AddAuthorization();
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-        .AddEntityFrameworkStores<BeautyLingerieDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+  
+    options.Password.RequireUppercase = false; 
+    options.Password.RequireNonAlphanumeric = false; 
+    options.Password.RequiredLength = 6; 
+  
+})
+.AddEntityFrameworkStores<BeautyLingerieDbContext>()
+.AddDefaultTokenProviders();
+
 
 // Configure AWS Services
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
@@ -61,7 +71,7 @@ builder.Services.AddAWSService<IAmazonS3>();
 
 // Configure Application Services
 builder.Services.AddApplicationServices(typeof(IProductService));
-
+builder.Services.AddScoped<IAdminSeedService, AdminSeedService>();
 // Configure CORS
 builder.Services.AddCors(options =>
 {
@@ -88,8 +98,9 @@ app.UseHttpsRedirection();
 app.UseCors("AllowLocalhost5173");
 
 app.UseAuthorization();
+app.UseAuthentication();
+app.SeedAdministrator(builder.Configuration["Admin:Email"]);
 
 app.MapControllers();
-app.MapIdentityApi<IdentityUser>();
 
 app.Run();

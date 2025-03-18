@@ -1,6 +1,5 @@
 ﻿using BeautyLingerie.Data.Configuration;
 using BeautyLingerie.Data.Models;
-using BeautyLingerie.Services.Admin;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,7 @@ namespace BeautyLingerie.Data
 {
     public class BeautyLingerieDbContext : IdentityDbContext<IdentityUser>
     {
-        private readonly IAdminSeedService adminSeedService;
+
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -21,14 +20,12 @@ namespace BeautyLingerie.Data
         public DbSet<WishList> WishList { get; set; }
         public BeautyLingerieDbContext(DbContextOptions<BeautyLingerieDbContext> options) : base(options)
         {
-           // _adminSeedService = adminSeedService;
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //var admin = _adminSeedService.CreateAdminUser();
-           // modelBuilder.Entity<IdentityUser>().HasData(admin);
 
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ColorConfiguration());

@@ -263,10 +263,10 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("48746951-61da-415d-802c-692de3a86c5b"),
+                            ProductId = new Guid("75fa2a89-22b6-46c2-a74b-49b2e4ad5800"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4636),
+                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(3915),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
                             ImageKey = "bikiniSeed.jpg",
                             Name = "Tropical Breeze Bikini",
@@ -276,10 +276,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("6b9dbbfb-b003-4922-bfa0-9bcbc9c96ed3"),
+                            ProductId = new Guid("798ec109-8bdb-43fd-80cf-b9c60310dd80"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4680),
+                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(3942),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
                             ImageKey = "underwearSeed.jpg",
                             Name = "Beautiful Pink Lace Underwear",
@@ -289,10 +289,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("db473dd2-5392-4422-b176-23d0cc786750"),
+                            ProductId = new Guid("27bffaee-fe4d-4036-ac44-271642776975"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4690),
+                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(3947),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
                             ImageKey = "braSeed.jpg",
                             Name = "Elegant White Lace Bra",
@@ -302,10 +302,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("2bddd03a-d568-47a3-8b4b-21641aec2acb"),
+                            ProductId = new Guid("aff70dc6-6619-4707-8445-35aa1f43bbc1"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2025, 3, 10, 12, 34, 27, 639, DateTimeKind.Utc).AddTicks(4699),
+                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(4201),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
                             ImageKey = "othersSeed.jpg",
                             Name = "Chic Black Lace Tank Top",
@@ -404,6 +404,14 @@ namespace BeautyLingerie.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -494,6 +502,24 @@ namespace BeautyLingerie.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "963a2477-30cb-4c92-8401-6084b24362d8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "34878d6a-881e-4ecf-8d98-0792868939cc",
+                            Email = "beautylingeriestore@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "BEAUTYLINGERIESTORE@GMAIL.COM",
+                            NormalizedUserName = "BEAUTYLINGERIESTORE@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEH5nvxwg2ScuYLMZxAU6K/sRPjJxPC22bku5YjBOAk3ZBKPFLb6t6/N+cMcLVt//Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ff9499b0-a328-46cc-96a0-c7cb9722dbbd",
+                            TwoFactorEnabled = false,
+                            UserName = "beautylingeriestore@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -556,6 +582,13 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "f1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e",
+                            RoleId = "a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 
 namespace BeautyLingerie.WebApi.Extention
 {
@@ -29,6 +30,62 @@ namespace BeautyLingerie.WebApi.Extention
                 services.AddScoped(interfaceType, implementationType);
             }
         }
+        public static IApplicationBuilder SeedAdministrator(this IApplicationBuilder app, string email)
+        {
+            using (IServiceScope scopedServices = app.ApplicationServices.CreateScope())
+            {
+                IServiceProvider serviceProvider = scopedServices.ServiceProvider;
+
+                UserManager<IdentityUser> userManager =
+                    serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                RoleManager<IdentityRole> roleManager =
+                    serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+
+               
+                var task = Task.Run(async () =>
+                {
+                   
+                    if (!await roleManager.RoleExistsAsync("Administrator"))
+                    {
+                       
+                        IdentityRole role = new IdentityRole("Administrator");
+                        await roleManager.CreateAsync(role);
+                    }
+
+                  
+                    IdentityUser adminUser = await userManager.FindByEmailAsync(email);
+                    if (adminUser == null)
+                    {
+                       
+                        adminUser = new IdentityUser
+                        {
+                            UserName = email,
+                            Email = email
+                        };
+
+                     
+                        var createResult = await userManager.CreateAsync(adminUser, configuration["Admin:Password"]);
+                      
+                        if (!createResult.Succeeded)
+                        {
+                            throw new InvalidOperationException("Failed to create admin user.");
+                        }
+                       
+                    }
+
+               
+                    if (!await userManager.IsInRoleAsync(adminUser, "Administrator"))
+                    {
+                        await userManager.AddToRoleAsync(adminUser, "Administrator");
+                    }
+                });
+                task.GetAwaiter().GetResult();
+            }
+
+            return app;
+        }
+
     }
 }
 
