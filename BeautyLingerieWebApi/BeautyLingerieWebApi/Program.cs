@@ -5,6 +5,9 @@ using BeautyLingerie.WebApi.Extention;
 using BeautyLingerie.Services.Product.Contacts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.DataProtection;
+using CloudinaryDotNet;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,6 +65,16 @@ builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS")
 builder.Services.AddAWSService<IAmazonS3>();
 
 builder.Services.AddApplicationServices(typeof(IProductService));
+Account cloudinaryCredentials = new Account(
+        builder.Configuration["Cloudinary:CloudName"],
+        builder.Configuration["Cloudinary:ApiKey"],
+        builder.Configuration["Cloudinary:ApiSecret"]
+      
+    );
+
+Cloudinary cloudinary = new Cloudinary(cloudinaryCredentials);
+builder.Services.AddSingleton(cloudinary);
+
 
 builder.Services.AddCors(options =>
 {

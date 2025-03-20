@@ -2,7 +2,7 @@
 {
     using BeautyLingerie.Data;
     using BeautyLingerie.Data.Models;
-    using BeautyLingerie.Services.Media.Contracts;
+    using BeautyLingerie.Services.MediaService.Contracts;
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;
     using Microsoft.EntityFrameworkCore;
@@ -10,9 +10,9 @@
     public class ProductService : IProductService
     {
         public BeautyLingerieDbContext dbContext { get; set; }
-        private IS3Service mediaService;
+        private IMediaService mediaService;
 
-        public ProductService(BeautyLingerieDbContext dbContext, IS3Service mediaService)
+        public ProductService(BeautyLingerieDbContext dbContext, IMediaService mediaService)
         {
             this.dbContext = dbContext;
             this.mediaService = mediaService;
@@ -24,16 +24,14 @@
             {
                 Id = p.ProductId,
                 Name = p.Name,
-                ImageUrl = p.ImageKey,
+                ImageUrl = p.ImageUrl,
                 Price = p.Price,
             }
             ).AsNoTracking()
             .ToListAsync();
-            foreach (var item in products)
-            {
-                item.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", item.ImageUrl);
-            }
+            
             return products;
+
         }
         public async Task<ProductDetailsViewModel> GetProductByIdAsync(Guid productId)
         {
@@ -44,14 +42,14 @@
                     Id = p.ProductId,
                     Name = p.Name,
                     Description = p.Description,
-                    ImageUrl = p.ImageKey,
+                    ImageUrl = p.ImageUrl,
                     Price = p.Price,
                     ColorName = p.Color.Name,
                     CatgeryName = p.Category.Name,
                     Size = p.Size.Name
                 }).FirstOrDefaultAsync();
 
-                product.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", product.ImageUrl);
+              
                 return product;
 
             }
@@ -71,14 +69,14 @@
                 Id = p.ProductId,
                 Name = p.Name,
                 Description = p.Description,
-                ImageUrl = p.ImageKey,
+                ImageUrl = p.ImageUrl,
                 Price = p.Price,
                 ColorName = p.Color.Name,
                 CatgeryName = p.Category.Name,
                 Size = p.Size.Name
             }).FirstOrDefaultAsync();
            
-            product.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", product.ImageUrl);
+          
             return product;
             }
             catch
@@ -94,15 +92,12 @@
             {
                 Id = p.ProductId,
                 Name = p.Name,
-                ImageUrl = p.ImageKey,
+                ImageUrl = p.ImageUrl,
                 Price = p.Price,
             }
             ).AsNoTracking()
             .ToListAsync();
-            foreach (var item in products)
-            {
-                item.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", item.ImageUrl);
-            }
+           
             return products;
         }
         public async Task<IEnumerable<ProductViewModel>> GetNewestProducts()
@@ -112,15 +107,12 @@
             {
                 Id = p.ProductId,
                 Name = p.Name,
-                ImageUrl = p.ImageKey,
+                ImageUrl = p.ImageUrl,
                 Price = p.Price,
             }
             ).AsNoTracking()
             .ToListAsync();
-            foreach (var item in products)
-            {
-                item.ImageUrl = await mediaService.GetFileUrlByKeyAsync("beauty-lingerie-bucket", item.ImageUrl);
-            }
+           
             return products;
         }
 

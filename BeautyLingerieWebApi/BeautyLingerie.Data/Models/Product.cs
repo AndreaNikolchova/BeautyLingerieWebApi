@@ -25,7 +25,7 @@
         [Required]
         public int Quantity { get; set; }
         [Required]
-        public string ImageKey { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
 
         [ForeignKey(nameof(Category))]
         public Guid CategoryId { get; set; }
