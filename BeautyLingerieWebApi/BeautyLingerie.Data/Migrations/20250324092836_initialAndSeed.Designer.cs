@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyLingerie.Data.Migrations
 {
     [DbContext(typeof(BeautyLingerieDbContext))]
-    [Migration("20250310122241_initial")]
-    partial class initial
+    [Migration("20250324092836_initialAndSeed")]
+    partial class initialAndSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,23 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
+                            Name = "Bikini"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
+                            Name = "Underwear"
+                        },
+                        new
+                        {
+                            CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
+                            Name = "Others"
+                        });
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Color", b =>
@@ -55,6 +72,98 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasKey("ColorId");
 
                     b.ToTable("Colors");
+
+                    b.HasData(
+                        new
+                        {
+                            ColorId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
+                            Name = "Red"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("21ec2020-3aea-4069-a2dd-08002b30309d"),
+                            Name = "Blue"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("ed6958ab-267e-4148-97f2-e1d9d4fcd8b7"),
+                            Name = "Yellow"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("68e3f5e2-6f52-4095-85c6-70bfb0d80b29"),
+                            Name = "Green"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
+                            Name = "Black"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
+                            Name = "White"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("a2d6b5cb-2a3e-4d58-a7fc-e42a67c4ff7d"),
+                            Name = "Orange"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("b6eb6d37-6d69-4b82-a5ec-9cf9a2e547a1"),
+                            Name = "Purple"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
+                            Name = "Pink"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("5531e2b6-0f72-40f8-9d62-6e7fc621c3f4"),
+                            Name = "Brown"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("a3a0a98e-7e51-4c32-9c2b-b00d9057ed9a"),
+                            Name = "Gray"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("b5b14f99-b75d-4017-bdd2-2fc08c30f35a"),
+                            Name = "Cyan"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("c1c34f64-c8e3-4d43-b8f2-d9ad4c2fbc2a"),
+                            Name = "Magenta"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("d7d6aeba-45b8-49c5-bf80-1d12c967ce5d"),
+                            Name = "Lime"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("e6e7a663-32b3-4c8f-a1da-051ac8e5dca9"),
+                            Name = "Teal"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("f3f4a0a4-12cb-4f5f-b3a8-3c8c8ea5dc1c"),
+                            Name = "Indigo"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("111a1245-7c45-4a12-baf4-cbdb5e85f7e6"),
+                            Name = "Turquoise"
+                        },
+                        new
+                        {
+                            ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
+                            Name = "Multicolor"
+                        });
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Customer", b =>
@@ -121,7 +230,7 @@ namespace BeautyLingerie.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("ImageKey")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -153,6 +262,60 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasIndex("SizeId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = new Guid("6566eff9-a894-4afc-899d-12e394d6c4cd"),
+                            CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
+                            ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7639),
+                            Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=8a90fe72a0ed62564a764443e3f1da13",
+                            Name = "Tropical Breeze Bikini",
+                            Price = 26.00m,
+                            Quantity = 3,
+                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2")
+                        },
+                        new
+                        {
+                            ProductId = new Guid("1238b8db-1d43-4400-9080-ff5cec39dde5"),
+                            CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
+                            ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7653),
+                            Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=32bb34227e2e90652e75aaac0fe12952",
+                            Name = "Beautiful Pink Lace Underwear",
+                            Price = 3.50m,
+                            Quantity = 5,
+                            SizeId = new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da")
+                        },
+                        new
+                        {
+                            ProductId = new Guid("106e1a9e-69f3-4a8e-8246-7af2e3f8d7de"),
+                            CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
+                            ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7660),
+                            Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=946f30a2977208640c668e4ac0e8fdc8",
+                            Name = "Elegant White Lace Bra",
+                            Price = 12.99m,
+                            Quantity = 7,
+                            SizeId = new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e")
+                        },
+                        new
+                        {
+                            ProductId = new Guid("8ca3687c-c089-40c2-a843-1d5bbc646bb1"),
+                            CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
+                            ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7667),
+                            Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=0e4a4786e53ed295a04a1dd4956e3151",
+                            Name = "Chic Black Lace Tank Top",
+                            Price = 29.99m,
+                            Quantity = 7,
+                            SizeId = new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7")
+                        });
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Size", b =>
@@ -169,6 +332,33 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasKey("SizeId");
 
                     b.ToTable("Sizes");
+
+                    b.HasData(
+                        new
+                        {
+                            SizeId = new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"),
+                            Name = "S"
+                        },
+                        new
+                        {
+                            SizeId = new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da"),
+                            Name = "M"
+                        },
+                        new
+                        {
+                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"),
+                            Name = "L"
+                        },
+                        new
+                        {
+                            SizeId = new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"),
+                            Name = "XL"
+                        },
+                        new
+                        {
+                            SizeId = new Guid("ae2b67e1-df68-4e2d-9c3a-8b6e1e8b9f3c"),
+                            Name = "XXL"
+                        });
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.WishList", b =>

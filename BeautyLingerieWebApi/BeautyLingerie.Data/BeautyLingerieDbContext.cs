@@ -16,6 +16,7 @@ namespace BeautyLingerie.Data
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<WishList> WishList { get; set; }
+       
         public BeautyLingerieDbContext(DbContextOptions<BeautyLingerieDbContext> options) : base(options)
         {
 
@@ -29,8 +30,8 @@ namespace BeautyLingerie.Data
             modelBuilder.ApplyConfiguration(new ColorConfiguration());
             modelBuilder.ApplyConfiguration(new CategoriesConfiguration());
             modelBuilder.ApplyConfiguration(new SizesConfiguration());
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
+        
+        
 
         }
     }

@@ -227,7 +227,7 @@ namespace BeautyLingerie.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("ImageKey")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -263,12 +263,12 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("75fa2a89-22b6-46c2-a74b-49b2e4ad5800"),
+                            ProductId = new Guid("6566eff9-a894-4afc-899d-12e394d6c4cd"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(3915),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7639),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
-                            ImageKey = "bikiniSeed.jpg",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=8a90fe72a0ed62564a764443e3f1da13",
                             Name = "Tropical Breeze Bikini",
                             Price = 26.00m,
                             Quantity = 3,
@@ -276,12 +276,12 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("798ec109-8bdb-43fd-80cf-b9c60310dd80"),
+                            ProductId = new Guid("1238b8db-1d43-4400-9080-ff5cec39dde5"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(3942),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7653),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
-                            ImageKey = "underwearSeed.jpg",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=32bb34227e2e90652e75aaac0fe12952",
                             Name = "Beautiful Pink Lace Underwear",
                             Price = 3.50m,
                             Quantity = 5,
@@ -289,12 +289,12 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("27bffaee-fe4d-4036-ac44-271642776975"),
+                            ProductId = new Guid("106e1a9e-69f3-4a8e-8246-7af2e3f8d7de"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(3947),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7660),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
-                            ImageKey = "braSeed.jpg",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=946f30a2977208640c668e4ac0e8fdc8",
                             Name = "Elegant White Lace Bra",
                             Price = 12.99m,
                             Quantity = 7,
@@ -302,12 +302,12 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("aff70dc6-6619-4707-8445-35aa1f43bbc1"),
+                            ProductId = new Guid("8ca3687c-c089-40c2-a843-1d5bbc646bb1"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2025, 3, 18, 17, 19, 30, 385, DateTimeKind.Utc).AddTicks(4201),
+                            CreatedOn = new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7667),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
-                            ImageKey = "othersSeed.jpg",
+                            ImageUrl = "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=0e4a4786e53ed295a04a1dd4956e3151",
                             Name = "Chic Black Lace Tank Top",
                             Price = 29.99m,
                             Quantity = 7,
@@ -404,14 +404,6 @@ namespace BeautyLingerie.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -502,24 +494,6 @@ namespace BeautyLingerie.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "963a2477-30cb-4c92-8401-6084b24362d8",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "34878d6a-881e-4ecf-8d98-0792868939cc",
-                            Email = "beautylingeriestore@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "BEAUTYLINGERIESTORE@GMAIL.COM",
-                            NormalizedUserName = "BEAUTYLINGERIESTORE@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEH5nvxwg2ScuYLMZxAU6K/sRPjJxPC22bku5YjBOAk3ZBKPFLb6t6/N+cMcLVt//Q==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ff9499b0-a328-46cc-96a0-c7cb9722dbbd",
-                            TwoFactorEnabled = false,
-                            UserName = "beautylingeriestore@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -582,13 +556,6 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "f1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e",
-                            RoleId = "a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

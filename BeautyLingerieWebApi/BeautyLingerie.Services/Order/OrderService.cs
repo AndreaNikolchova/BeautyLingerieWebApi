@@ -22,7 +22,7 @@ namespace BeautyLingerie.Services.Order
                     {
                         Id = p.ProductId,
                         Name = p.Name,
-                        ImageUrl = p.ImageKey,
+                        ImageUrl = p.ImageUrl,
                         Price = p.Price
 
 

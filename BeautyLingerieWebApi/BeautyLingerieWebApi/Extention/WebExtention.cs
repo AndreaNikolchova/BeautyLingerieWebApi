@@ -57,24 +57,23 @@ namespace BeautyLingerie.WebApi.Extention
                     IdentityUser adminUser = await userManager.FindByEmailAsync(email);
                     if (adminUser == null)
                     {
-                       
                         adminUser = new IdentityUser
                         {
                             UserName = email,
                             Email = email
                         };
 
-                     
                         var createResult = await userManager.CreateAsync(adminUser, configuration["Admin:Password"]);
-                      
                         if (!createResult.Succeeded)
                         {
                             throw new InvalidOperationException("Failed to create admin user.");
                         }
-                       
+
+                     
+                        adminUser = await userManager.FindByEmailAsync(email);
                     }
 
-               
+
                     if (!await userManager.IsInRoleAsync(adminUser, "Administrator"))
                     {
                         await userManager.AddToRoleAsync(adminUser, "Administrator");

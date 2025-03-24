@@ -1,5 +1,4 @@
 ﻿using BeautyLingerie.Data;
-using BeautyLingerie.Services.Media.Contracts;
 using BeautyLingerie.Services.Color.Contracts;
 using Microsoft.EntityFrameworkCore;
 using BeautyLingerie.ViewModels.Color;
