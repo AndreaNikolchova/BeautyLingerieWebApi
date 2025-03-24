@@ -116,19 +116,31 @@
             return products;
         }
 
-        public async Task AddCustomerAsync(AddProductViewModel model)
+        public async Task AddProductAsync(AddProductViewModel model)
         {
             var category = await this.dbContext.Categories.Where(c => c.Name == model.Category).FirstOrDefaultAsync();
+            if(category == null)
+            {
+                category = new Category()
+                {
+                    Name = model.Category
+                };
+              
+            }
             var size = await this.dbContext.Sizes.Where(s=>s.Name == model.Size).FirstOrDefaultAsync();
+            if(size == null)
+            {
+                size = new Size()
+                {
+                    Name = model.Size
+                };
+            }
            
-            //var picture = await this.mediaService.UploadFileAsync(model.Photo, model.Name);
-
-
-
+            var picture = await this.mediaService.UploadPictureAsync(model.Photo, model.Name);
             Product product = new Product()
             {
                 Name = model.Name,
-                //ImageUrl = picture,
+                ImageUrl = picture,
                 Description = model.Description,
                 Size = size,
                 Quantity = model.Quantity,
@@ -137,7 +149,9 @@
             };
            
             await dbContext.Products.AddAsync(product);
+            await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync();
+           
         }
     }
 }

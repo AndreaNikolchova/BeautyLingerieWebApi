@@ -22,6 +22,7 @@
         public string Size { get; set; } = null!;
         [Required]
         public string Color { get; set; } = null!;
+        [Required]
         public IFormFile Photo { get; set; } = null!;
     }
 }

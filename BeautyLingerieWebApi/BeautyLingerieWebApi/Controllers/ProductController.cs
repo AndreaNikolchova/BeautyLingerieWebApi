@@ -56,10 +56,11 @@
             var model = await productService.GetNewestProducts();
             return Ok(model);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost("Add")]
         public async Task<IActionResult> AddNewProduct([FromBody] AddProductViewModel product)
         {
+            await productService.AddProductAsync(product);
             return Ok();
         }
 

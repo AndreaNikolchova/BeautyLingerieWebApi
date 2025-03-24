@@ -8,7 +8,7 @@ public interface IProductService
     Task<ProductDetailsViewModel> GetProductByNameAsync(string name);
     Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName);
     Task<IEnumerable<ProductViewModel>> GetNewestProducts();
-    Task AddCustomerAsync(AddProductViewModel model);
+    Task AddProductAsync(AddProductViewModel model);
 
 }
 
