@@ -26,6 +26,7 @@
                 Name = p.Name,
                 ImageUrl = p.ImageUrl,
                 Price = p.Price,
+                Quantity = p.Quantity
             }
             ).AsNoTracking()
             .ToListAsync();
