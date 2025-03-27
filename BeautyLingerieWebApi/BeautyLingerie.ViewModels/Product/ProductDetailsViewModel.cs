@@ -15,5 +15,6 @@ namespace BeautyLingerie.ViewModels.Product
         public string ColorName { get; set; } = null!;
         public string Size { get; set; } = null!;
         public string CatgeryName { get; set; } = null!;
+        public int Quantity { get; set; } 
     }
 }

@@ -47,7 +47,8 @@
                     Price = p.Price,
                     ColorName = p.Color.Name,
                     CatgeryName = p.Category.Name,
-                    Size = p.Size.Name
+                    Size = p.Size.Name,
+                    Quantity = p.Quantity
                 }).FirstOrDefaultAsync();
 
               
@@ -74,7 +75,8 @@
                 Price = p.Price,
                 ColorName = p.Color.Name,
                 CatgeryName = p.Category.Name,
-                Size = p.Size.Name
+                Size = p.Size.Name,
+                Quantity = p.Quantity
             }).FirstOrDefaultAsync();
            
           
