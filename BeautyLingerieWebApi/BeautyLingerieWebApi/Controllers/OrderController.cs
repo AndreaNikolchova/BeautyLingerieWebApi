@@ -15,20 +15,12 @@ namespace BeautyLingerie.WebApi.Controllers
             this.orderService = orderService;
 
         }
-        [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<OrderViewModel>))]
-        public async Task<IActionResult> GetAll()
+        [HttpPost("/order/add-guest")]
+       public async Task<IActionResult> AddGuestOrder([FromBody] AddOrderGuestViewModel model)
         {
-            var model = await orderService.GetAllAsync();
-            return Ok(model);
+            await orderService.AddGuestOrder(model);
+            return Ok();
         }
-        [HttpGet("{orderId}")]
-        [ProducesResponseType(200, Type = typeof(OrderViewModel))]
-        [ProducesResponseType(400)]
-        public async Task<IActionResult> GetOrderById(Guid orderId)
-        {
-            var model = await orderService.GetOrderByIdAsync(orderId);
-            return Ok(model);
-        }
+     
     }
 }

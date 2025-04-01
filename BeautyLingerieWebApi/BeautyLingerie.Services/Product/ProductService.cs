@@ -46,9 +46,9 @@
                     ImageUrl = p.ImageUrl,
                     Price = p.Price,
                     ColorName = p.Color.Name,
-                    CatgeryName = p.Category.Name,
+                    CategoryName = p.Category.Name,
                     Size = p.Size.Name,
-                    Quantity = p.Quantity
+                    QuantityAll = p.Quantity
                 }).FirstOrDefaultAsync();
 
               
@@ -74,9 +74,9 @@
                 ImageUrl = p.ImageUrl,
                 Price = p.Price,
                 ColorName = p.Color.Name,
-                CatgeryName = p.Category.Name,
+                CategoryName = p.Category.Name,
                 Size = p.Size.Name,
-                Quantity = p.Quantity
+                QuantityAll = p.Quantity
             }).FirstOrDefaultAsync();
            
           

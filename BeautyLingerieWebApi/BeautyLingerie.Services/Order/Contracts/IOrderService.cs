@@ -1,11 +1,11 @@
 ﻿using BeautyLingerie.ViewModels.Order;
+using BeautyLingerie.ViewModels.Product;
 
 namespace BeautyLingerie.Services.Order.Contracts
 {
     public interface IOrderService
     {
-        Task<IEnumerable<OrderViewModel>> GetAllAsync();
-        Task<OrderViewModel> GetOrderByIdAsync(Guid id);
-      
+        Task AddGuestOrder(AddOrderGuestViewModel model);
+
     }
 }

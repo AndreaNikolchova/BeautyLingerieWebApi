@@ -199,8 +199,36 @@ namespace BeautyLingerie.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<decimal>("TotalSum")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("OrderId");
 
@@ -263,10 +291,10 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("992a8b7a-0bdc-43cd-bc2e-f8c74174855e"),
+                            ProductId = new Guid("0a3235bd-a81f-491f-b602-9b6a811ec42b"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2025, 3, 24, 9, 39, 5, 158, DateTimeKind.Utc).AddTicks(3809),
+                            CreatedOn = new DateTime(2025, 4, 1, 11, 14, 49, 688, DateTimeKind.Utc).AddTicks(9216),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/zaplviqvawybdtxwgoto.jpg",
                             Name = "Tropical Breeze Bikini",
@@ -276,10 +304,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("3e1aa9a0-5850-4f73-bf0b-57c3d4b00f37"),
+                            ProductId = new Guid("10917c33-b47e-44e9-be0d-fd9c8f8f1d01"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2025, 3, 24, 9, 39, 5, 158, DateTimeKind.Utc).AddTicks(3900),
+                            CreatedOn = new DateTime(2025, 4, 1, 11, 14, 49, 688, DateTimeKind.Utc).AddTicks(9231),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/jvvbilveebrqwey5vnn9.jpg",
                             Name = "Beautiful Pink Lace Underwear",
@@ -289,10 +317,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("5a30789c-b3af-4fdf-bb2f-e9661902526b"),
+                            ProductId = new Guid("e9e9268e-62b6-43d5-a802-6ad5ce495523"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2025, 3, 24, 9, 39, 5, 158, DateTimeKind.Utc).AddTicks(3907),
+                            CreatedOn = new DateTime(2025, 4, 1, 11, 14, 49, 688, DateTimeKind.Utc).AddTicks(9236),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/w0hvcjfrp7tcbucmszu1.jpg",
                             Name = "Elegant White Lace Bra",
@@ -302,10 +330,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("99da9a32-f709-430a-973e-42c4ee421a10"),
+                            ProductId = new Guid("a5f498d8-90cf-45ec-be33-31be720c4f28"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2025, 3, 24, 9, 39, 5, 158, DateTimeKind.Utc).AddTicks(3929),
+                            CreatedOn = new DateTime(2025, 4, 1, 11, 14, 49, 688, DateTimeKind.Utc).AddTicks(9288),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/rbku1kdduiuluc8jq6qy.jpg",
                             Name = "Chic Black Lace Tank Top",
