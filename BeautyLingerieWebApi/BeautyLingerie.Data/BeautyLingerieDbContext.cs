@@ -14,6 +14,7 @@ namespace BeautyLingerie.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<WishList> WishList { get; set; }
        
@@ -30,8 +31,17 @@ namespace BeautyLingerie.Data
             modelBuilder.ApplyConfiguration(new ColorConfiguration());
             modelBuilder.ApplyConfiguration(new CategoriesConfiguration());
             modelBuilder.ApplyConfiguration(new SizesConfiguration());
-        
-        
+
+            modelBuilder.Entity<OrderProduct>()
+               .HasOne(op => op.Order)
+               .WithMany(o => o.OrderProducts)
+               .HasForeignKey(op => op.OrderId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(op => op.ProductId);
+
 
         }
     }

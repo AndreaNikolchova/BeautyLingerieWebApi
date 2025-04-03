@@ -4,6 +4,7 @@ using BeautyLingerie.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyLingerie.Data.Migrations
 {
     [DbContext(typeof(BeautyLingerieDbContext))]
-    partial class BeautyLingerieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250403181012_productQuantitiesToOrder")]
+    partial class productQuantitiesToOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,6 +217,10 @@ namespace BeautyLingerie.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("ProductQuanties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ShippingAddress")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -233,33 +240,6 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasKey("OrderId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.OrderProduct", b =>
-                {
-                    b.Property<Guid>("OrderProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("PriceAtOrderTime")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderProductId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
@@ -291,6 +271,9 @@ namespace BeautyLingerie.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -306,6 +289,8 @@ namespace BeautyLingerie.Data.Migrations
 
                     b.HasIndex("ColorId");
 
+                    b.HasIndex("OrderId");
+
                     b.HasIndex("SizeId");
 
                     b.ToTable("Products");
@@ -313,10 +298,10 @@ namespace BeautyLingerie.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("1be469c3-de77-4975-ba89-7eee4f2621bb"),
+                            ProductId = new Guid("9eebb0be-d70f-4a39-91a2-9d337aee143d"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2025, 4, 3, 18, 51, 3, 111, DateTimeKind.Utc).AddTicks(7665),
+                            CreatedOn = new DateTime(2025, 4, 3, 18, 10, 11, 411, DateTimeKind.Utc).AddTicks(2242),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/zaplviqvawybdtxwgoto.jpg",
                             Name = "Tropical Breeze Bikini",
@@ -326,10 +311,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("8c0f9edd-b8ca-4c3d-9e16-6f8fee3256be"),
+                            ProductId = new Guid("700707e7-8210-4453-aee6-da118c47b2e7"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2025, 4, 3, 18, 51, 3, 111, DateTimeKind.Utc).AddTicks(7678),
+                            CreatedOn = new DateTime(2025, 4, 3, 18, 10, 11, 411, DateTimeKind.Utc).AddTicks(2255),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/jvvbilveebrqwey5vnn9.jpg",
                             Name = "Beautiful Pink Lace Underwear",
@@ -339,10 +324,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("3360b8f9-2eef-43bc-8dbd-4658c086f7bd"),
+                            ProductId = new Guid("18e3efd6-a8c8-4594-b8f2-ae2cbd905f8b"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2025, 4, 3, 18, 51, 3, 111, DateTimeKind.Utc).AddTicks(7684),
+                            CreatedOn = new DateTime(2025, 4, 3, 18, 10, 11, 411, DateTimeKind.Utc).AddTicks(2261),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/w0hvcjfrp7tcbucmszu1.jpg",
                             Name = "Elegant White Lace Bra",
@@ -352,10 +337,10 @@ namespace BeautyLingerie.Data.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("71b5e692-f66e-484c-8310-eefa1aa1de6c"),
+                            ProductId = new Guid("b88b44f6-6f56-47b5-ad9e-fc5f9429ec04"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2025, 4, 3, 18, 51, 3, 111, DateTimeKind.Utc).AddTicks(7690),
+                            CreatedOn = new DateTime(2025, 4, 3, 18, 10, 11, 411, DateTimeKind.Utc).AddTicks(2283),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/rbku1kdduiuluc8jq6qy.jpg",
                             Name = "Chic Black Lace Tank Top",
@@ -638,25 +623,6 @@ namespace BeautyLingerie.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BeautyLingerie.Data.Models.OrderProduct", b =>
-                {
-                    b.HasOne("BeautyLingerie.Data.Models.Order", "Order")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeautyLingerie.Data.Models.Product", "Product")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
                 {
                     b.HasOne("BeautyLingerie.Data.Models.Category", "Category")
@@ -670,6 +636,10 @@ namespace BeautyLingerie.Data.Migrations
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BeautyLingerie.Data.Models.Order", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("BeautyLingerie.Data.Models.Size", "Size")
                         .WithMany()
@@ -756,12 +726,7 @@ namespace BeautyLingerie.Data.Migrations
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Order", b =>
                 {
-                    b.Navigation("OrderProducts");
-                });
-
-            modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
-                {
-                    b.Navigation("OrderProducts");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
