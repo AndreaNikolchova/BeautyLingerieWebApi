@@ -92,14 +92,14 @@
         public async Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName)
         {
 
-            List<ProductViewModel> products = await dbContext.Products.Where(p => p.Category.Name == categoryName).Select(p => new ProductViewModel
+            List<ProductViewModel> products = await dbContext.Products.Where(p => p.Category.Name == categoryName && p.Quantity>0).Select(p => new ProductViewModel
             {
                 Id = p.ProductId,
                 Name = p.Name,
                 ImageUrl = p.ImageUrl,
                 Price = p.Price,
             }
-            ).Where(p => p.Quantity > 0)
+            )
             .AsNoTracking()
             .ToListAsync();
            
