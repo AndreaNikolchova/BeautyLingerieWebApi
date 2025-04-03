@@ -28,7 +28,8 @@
                 Price = p.Price,
                 Quantity = p.Quantity
             }
-            ).AsNoTracking()
+            ).Where(p=>p.Quantity>0)
+            .AsNoTracking()
             .ToListAsync();
             
             return products;
@@ -98,7 +99,8 @@
                 ImageUrl = p.ImageUrl,
                 Price = p.Price,
             }
-            ).AsNoTracking()
+            ).Where(p => p.Quantity > 0)
+            .AsNoTracking()
             .ToListAsync();
            
             return products;
