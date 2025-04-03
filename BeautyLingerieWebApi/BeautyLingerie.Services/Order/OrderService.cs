@@ -18,7 +18,7 @@
 
         public async Task AddGuestOrder(AddOrderGuestViewModel model)
         {
-            
+
             var order = new Order
             {
                 TotalSum = model.TotalSum,
@@ -28,11 +28,12 @@
                 PhoneNumber = model.PhoneNumber,
                 ShippingAddress = model.ShippingAddress,
                 Status = "Pending",
-               
+
                 Products = model.Products.Select(p => dbContext.Products
                     .FirstOrDefault(x => x.ProductId == p.Id))
                     .Where(product => product != null)
-                    .ToList()
+                    .ToList(),
+                ProductQuanties = model.Products.Select(p => p.Quantity).ToList()
             };
 
             await dbContext.Orders.AddAsync(order);

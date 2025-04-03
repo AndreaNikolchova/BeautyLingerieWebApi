@@ -22,6 +22,7 @@ namespace BeautyLingerie.Data.Models
         public DateTime CreatedOn { get; set; }
 
         public IReadOnlyCollection<Product> Products { get; set; }
+        public IReadOnlyCollection<int> ProductQuanties { get; set; } = new List<int>();
 
         public Guid? UserId { get; set; }
 
