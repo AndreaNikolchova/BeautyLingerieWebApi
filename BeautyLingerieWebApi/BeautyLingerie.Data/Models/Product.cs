@@ -10,20 +10,26 @@
         public Product()
         {
             ProductId = Guid.NewGuid();
+            this.OrderProducts = new List<OrderProduct>();  
         }
+
         [Key]
         public Guid ProductId { get; set; }
 
         [Required]
         [MaxLength(ValidationalConstants.ProductNameMaxLenght)]
         public string Name { get; set; } = null!;
+
         [Required]
         [MaxLength(ValidationalConstants.ProductDescriptionMaxLenght)]
         public string Description { get; set; } = null!;
+
         [Required]
         public decimal Price { get; set; }
+
         [Required]
         public int Quantity { get; set; }
+
         [Required]
         public string ImageUrl { get; set; } = null!;
 
@@ -38,8 +44,10 @@
         [ForeignKey(nameof(Color))]
         public Guid ColorId { get; set; }
         public Color Color { get; set; }
-    
+
         public DateTime CreatedOn { get; set; }
 
+       
+        public List<OrderProduct> OrderProducts { get; set; }
     }
 }

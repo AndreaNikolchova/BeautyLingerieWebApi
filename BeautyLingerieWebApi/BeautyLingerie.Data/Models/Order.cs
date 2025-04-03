@@ -10,7 +10,7 @@ namespace BeautyLingerie.Data.Models
         public Order()
         {
             this.OrderId = Guid.NewGuid();
-            this.Products = new List<Product>();
+            this.OrderProducts = new List<OrderProduct>(); 
         }
 
         public Guid OrderId { get; set; }
@@ -20,9 +20,6 @@ namespace BeautyLingerie.Data.Models
 
         [Required]
         public DateTime CreatedOn { get; set; }
-
-        public IReadOnlyCollection<Product> Products { get; set; }
-        public IReadOnlyCollection<int> ProductQuanties { get; set; } = new List<int>();
 
         public Guid? UserId { get; set; }
 
@@ -41,5 +38,8 @@ namespace BeautyLingerie.Data.Models
 
         [StringLength(50)]
         public string Status { get; set; } = null!;
+
+        public List<OrderProduct> OrderProducts { get; set; }
     }
+
 }
