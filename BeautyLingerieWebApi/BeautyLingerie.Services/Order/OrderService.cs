@@ -43,13 +43,14 @@
                     orderProducts.Add(new OrderProduct
                     {
                         ProductId = product.ProductId,
+                        Product = product,
                         OrderId = order.OrderId,
+                        Order = order,
                         Quantity = productModel.Quantity,
                         PriceAtOrderTime = product.Price
                     });
                 }
             }
-
             await dbContext.Orders.AddAsync(order);
             await dbContext.OrderProducts.AddRangeAsync(orderProducts);
             await dbContext.SaveChangesAsync();
