@@ -6,6 +6,7 @@
     using BeautyLingerie.Data.Models;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
 
     public class OrderService : IOrderService
     {
@@ -18,7 +19,6 @@
 
         public async Task AddGuestOrder(AddOrderGuestViewModel model)
         {
-
             var order = new Order
             {
                 TotalSum = model.TotalSum,
@@ -28,16 +28,32 @@
                 PhoneNumber = model.PhoneNumber,
                 ShippingAddress = model.ShippingAddress,
                 Status = "Pending",
-
-                Products = model.Products.Select(p => dbContext.Products
-                    .FirstOrDefault(x => x.ProductId == p.Id))
-                    .Where(product => product != null)
-                    .ToList(),
-                ProductQuanties = model.Products.Select(p => p.Quantity).ToList()
             };
 
+            var orderProducts = new List<OrderProduct>();
+
+            foreach (var productModel in model.Products)
+            {
+                var product = await dbContext.Products
+                    .FirstOrDefaultAsync(p => p.ProductId == productModel.Id);
+
+                if (product != null)
+                {
+                    product.Quantity -= productModel.Quantity;
+                    orderProducts.Add(new OrderProduct
+                    {
+                        ProductId = product.ProductId,
+                        OrderId = order.OrderId,
+                        Quantity = productModel.Quantity,
+                        PriceAtOrderTime = product.Price
+                    });
+                }
+            }
+
             await dbContext.Orders.AddAsync(order);
+            await dbContext.OrderProducts.AddRangeAsync(orderProducts);
             await dbContext.SaveChangesAsync();
         }
+
     }
 }

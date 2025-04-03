@@ -15,7 +15,7 @@ namespace BeautyLingerie.WebApi.Controllers
             this.orderService = orderService;
 
         }
-        [HttpPost("/order/add-guest")]
+        [HttpPost("/Order/Add-guest")]
        public async Task<IActionResult> AddGuestOrder([FromBody] AddOrderGuestViewModel model)
         {
             await orderService.AddGuestOrder(model);
