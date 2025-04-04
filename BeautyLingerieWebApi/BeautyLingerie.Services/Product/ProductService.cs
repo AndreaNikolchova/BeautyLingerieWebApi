@@ -56,6 +56,7 @@
                         {
                             SizeName = ps.Size.Name,
                             Quantity = ps.Quantity
+
                         }).ToList()
                     }).FirstOrDefaultAsync();
 
