@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyLingerie.Data.Migrations
 {
     [DbContext(typeof(BeautyLingerieDbContext))]
-    [Migration("20250403191236_orderProducttable")]
-    partial class orderProducttable
+    [Migration("20250404082534_initialAndSeed")]
+    partial class initialAndSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -256,11 +256,16 @@ namespace BeautyLingerie.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("SizeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("OrderProductId");
 
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeId");
 
                     b.ToTable("OrderProducts");
                 });
@@ -297,74 +302,156 @@ namespace BeautyLingerie.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("SizeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ColorId");
 
-                    b.HasIndex("SizeId");
-
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("a06d65dc-2ed2-416e-8795-71a81be2f11c"),
+                            ProductId = new Guid("09595ab6-c4af-4223-812c-6d74f2767997"),
                             CategoryId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             ColorId = new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"),
-                            CreatedOn = new DateTime(2025, 4, 3, 19, 12, 35, 771, DateTimeKind.Utc).AddTicks(2696),
+                            CreatedOn = new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4569),
                             Description = "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/zaplviqvawybdtxwgoto.jpg",
                             Name = "Tropical Breeze Bikini",
-                            Price = 26.00m,
-                            Quantity = 3,
-                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2")
+                            Price = 26.00m
                         },
                         new
                         {
-                            ProductId = new Guid("d32067bb-ba8e-4861-bac9-17f89f73cc97"),
+                            ProductId = new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"),
-                            CreatedOn = new DateTime(2025, 4, 3, 19, 12, 35, 771, DateTimeKind.Utc).AddTicks(2712),
+                            CreatedOn = new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4591),
                             Description = "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/jvvbilveebrqwey5vnn9.jpg",
                             Name = "Beautiful Pink Lace Underwear",
-                            Price = 3.50m,
-                            Quantity = 5,
-                            SizeId = new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da")
+                            Price = 3.50m
                         },
                         new
                         {
-                            ProductId = new Guid("5fdb379c-585c-45c1-81f5-4827d914fc2d"),
+                            ProductId = new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"),
                             CategoryId = new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"),
                             ColorId = new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"),
-                            CreatedOn = new DateTime(2025, 4, 3, 19, 12, 35, 771, DateTimeKind.Utc).AddTicks(2718),
+                            CreatedOn = new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4600),
                             Description = "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/w0hvcjfrp7tcbucmszu1.jpg",
                             Name = "Elegant White Lace Bra",
-                            Price = 12.99m,
-                            Quantity = 7,
-                            SizeId = new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e")
+                            Price = 12.99m
                         },
                         new
                         {
-                            ProductId = new Guid("a1721f5f-f61a-4904-90cd-e420b5be3b9e"),
+                            ProductId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
                             CategoryId = new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"),
                             ColorId = new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"),
-                            CreatedOn = new DateTime(2025, 4, 3, 19, 12, 35, 771, DateTimeKind.Utc).AddTicks(2724),
+                            CreatedOn = new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4607),
                             Description = "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.",
                             ImageUrl = "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/rbku1kdduiuluc8jq6qy.jpg",
                             Name = "Chic Black Lace Tank Top",
-                            Price = 29.99m,
-                            Quantity = 7,
-                            SizeId = new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7")
+                            Price = 29.99m
+                        });
+                });
+
+            modelBuilder.Entity("BeautyLingerie.Data.Models.ProductSize", b =>
+                {
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SizeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "SizeId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("ProductSize");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = new Guid("09595ab6-c4af-4223-812c-6d74f2767997"),
+                            SizeId = new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"),
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ProductId = new Guid("09595ab6-c4af-4223-812c-6d74f2767997"),
+                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"),
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ProductId = new Guid("09595ab6-c4af-4223-812c-6d74f2767997"),
+                            SizeId = new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"),
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ProductId = new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"),
+                            SizeId = new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"),
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ProductId = new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"),
+                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"),
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ProductId = new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"),
+                            SizeId = new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"),
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            ProductId = new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"),
+                            SizeId = new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"),
+                            Quantity = 10
+                        },
+                        new
+                        {
+                            ProductId = new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"),
+                            SizeId = new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da"),
+                            Quantity = 6
+                        },
+                        new
+                        {
+                            ProductId = new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"),
+                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"),
+                            Quantity = 7
+                        },
+                        new
+                        {
+                            ProductId = new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"),
+                            SizeId = new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"),
+                            Quantity = 8
+                        },
+                        new
+                        {
+                            ProductId = new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"),
+                            SizeId = new Guid("ae2b67e1-df68-4e2d-9c3a-8b6e1e8b9f3c"),
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ProductId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
+                            SizeId = new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da"),
+                            Quantity = 7
+                        },
+                        new
+                        {
+                            ProductId = new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"),
+                            SizeId = new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"),
+                            Quantity = 4
                         });
                 });
 
@@ -655,9 +742,17 @@ namespace BeautyLingerie.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BeautyLingerie.Data.Models.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
 
                     b.Navigation("Product");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
@@ -674,15 +769,26 @@ namespace BeautyLingerie.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
+                    b.Navigation("Color");
+                });
+
+            modelBuilder.Entity("BeautyLingerie.Data.Models.ProductSize", b =>
+                {
+                    b.HasOne("BeautyLingerie.Data.Models.Product", "Product")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BeautyLingerie.Data.Models.Size", "Size")
-                        .WithMany()
+                        .WithMany("ProductSizes")
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-
-                    b.Navigation("Color");
+                    b.Navigation("Product");
 
                     b.Navigation("Size");
                 });
@@ -765,6 +871,13 @@ namespace BeautyLingerie.Data.Migrations
             modelBuilder.Entity("BeautyLingerie.Data.Models.Product", b =>
                 {
                     b.Navigation("OrderProducts");
+
+                    b.Navigation("ProductSizes");
+                });
+
+            modelBuilder.Entity("BeautyLingerie.Data.Models.Size", b =>
+                {
+                    b.Navigation("ProductSizes");
                 });
 #pragma warning restore 612, 618
         }

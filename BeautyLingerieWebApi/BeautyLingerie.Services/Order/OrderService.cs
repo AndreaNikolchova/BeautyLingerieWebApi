@@ -34,27 +34,38 @@
 
             foreach (var productModel in model.Products)
             {
-                var product = await dbContext.Products
-                    .FirstOrDefaultAsync(p => p.ProductId == productModel.Id);
+                var productSize = await dbContext.ProductSize
+                    .Include(ps => ps.Product)
+                    .FirstOrDefaultAsync(ps =>
+                        ps.ProductId == productModel.ProductId &&
+                        ps.SizeId == productModel.SizeId);
 
-                if (product != null)
+                if (productSize != null && productSize.Quantity >= productModel.Quantity)
                 {
-                    product.Quantity -= productModel.Quantity;
+                    productSize.Quantity -= productModel.Quantity;
+
                     orderProducts.Add(new OrderProduct
                     {
-                        ProductId = product.ProductId,
-                        Product = product,
+                        ProductId = productSize.ProductId,
+                        SizeId = productSize.SizeId,
                         OrderId = order.OrderId,
                         Order = order,
                         Quantity = productModel.Quantity,
-                        PriceAtOrderTime = product.Price
+                        PriceAtOrderTime = productSize.Product.Price
                     });
                 }
+                else
+                {
+                  
+                    throw new InvalidOperationException("Недостатъчна наличност или липсващ размер.");
+                }
             }
+
             await dbContext.Orders.AddAsync(order);
             await dbContext.OrderProducts.AddRangeAsync(orderProducts);
             await dbContext.SaveChangesAsync();
         }
+
 
     }
 }

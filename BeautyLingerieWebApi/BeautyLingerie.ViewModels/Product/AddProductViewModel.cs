@@ -18,11 +18,12 @@
         public int Quantity { get; set; }
         [Required]
         public string Category { get; set; } = null!;
-        [Required]
-        public string Size { get; set; } = null!;
+    
         [Required]
         public string Color { get; set; } = null!;
         [Required]
         public IFormFile Photo { get; set; } = null!;
+        public Dictionary<string, int> SizesWithQuantities { get; set; } = new();
+       
     }
 }

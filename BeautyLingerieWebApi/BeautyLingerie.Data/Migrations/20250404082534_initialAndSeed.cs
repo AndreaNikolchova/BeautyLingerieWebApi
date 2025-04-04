@@ -82,7 +82,13 @@ namespace BeautyLingerie.Data.Migrations
                 {
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TotalSum = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ShippingAddress = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,13 +241,10 @@ namespace BeautyLingerie.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SizeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ColorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -258,13 +261,61 @@ namespace BeautyLingerie.Data.Migrations
                         principalTable: "Colors",
                         principalColumn: "ColorId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderProducts",
+                columns: table => new
+                {
+                    OrderProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SizeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    PriceAtOrderTime = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderProducts", x => x.OrderProductId);
                     table.ForeignKey(
-                        name: "FK_Products_Orders_OrderId",
+                        name: "FK_OrderProducts_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "OrderId");
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_Sizes_SizeId",
+                        name: "FK_OrderProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderProducts_Sizes_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Sizes",
+                        principalColumn: "SizeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductSize",
+                columns: table => new
+                {
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SizeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductSize", x => new { x.ProductId, x.SizeId });
+                    table.ForeignKey(
+                        name: "FK_ProductSize_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductSize_Sizes_SizeId",
                         column: x => x.SizeId,
                         principalTable: "Sizes",
                         principalColumn: "SizeId",
@@ -345,13 +396,33 @@ namespace BeautyLingerie.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "CategoryId", "ColorId", "CreatedOn", "Description", "ImageUrl", "Name", "OrderId", "Price", "Quantity", "SizeId" },
+                columns: new[] { "ProductId", "CategoryId", "ColorId", "CreatedOn", "Description", "ImageUrl", "Name", "Price" },
                 values: new object[,]
                 {
-                    { new Guid("106e1a9e-69f3-4a8e-8246-7af2e3f8d7de"), new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"), new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"), new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7660), "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.", "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=946f30a2977208640c668e4ac0e8fdc8", "Elegant White Lace Bra", null, 12.99m, 7, new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e") },
-                    { new Guid("1238b8db-1d43-4400-9080-ff5cec39dde5"), new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"), new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"), new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7653), "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.", "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=32bb34227e2e90652e75aaac0fe12952", "Beautiful Pink Lace Underwear", null, 3.50m, 5, new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da") },
-                    { new Guid("6566eff9-a894-4afc-899d-12e394d6c4cd"), new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"), new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"), new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7639), "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.", "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=8a90fe72a0ed62564a764443e3f1da13", "Tropical Breeze Bikini", null, 26.00m, 3, new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2") },
-                    { new Guid("8ca3687c-c089-40c2-a843-1d5bbc646bb1"), new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"), new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"), new DateTime(2025, 3, 24, 9, 28, 36, 496, DateTimeKind.Utc).AddTicks(7667), "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.", "https://console.cloudinary.com/pm/c-2a076cc0b769b72f259e84193cdb7b/media-explorer?assetId=0e4a4786e53ed295a04a1dd4956e3151", "Chic Black Lace Tank Top", null, 29.99m, 7, new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7") }
+                    { new Guid("09595ab6-c4af-4223-812c-6d74f2767997"), new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"), new Guid("3f3b5865-bd1e-4a21-9473-7a77d601b0f5"), new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4569), "Dive into paradise with our Tropical Breeze Bikini, featuring a vibrant blend of blue and pink with a chic palm tree pattern. The set includes a flattering bikini and a matching pink pareo, perfect for effortless beach style and comfort. Ideal for sun-soaked getaways and poolside lounging.", "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/zaplviqvawybdtxwgoto.jpg", "Tropical Breeze Bikini", 26.00m },
+                    { new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"), new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"), new Guid("37bc840f-355e-4bb2-8b79-ccca593ee1c6"), new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4600), "Embrace sophistication and comfort with our Elegant White Lace Bra. This exquisite piece features intricate lace detailing and a pristine white color, making it an ideal choice for those who appreciate elegance and quality. Perfect for both everyday wear and special occasions.", "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/w0hvcjfrp7tcbucmszu1.jpg", "Elegant White Lace Bra", 12.99m },
+                    { new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"), new Guid("9e8b7c6d-5a4b-3c2d-1e0f-a9b8c7d6e5f4"), new Guid("81e5c1be-6c10-44e7-89ed-8c7dd6b3d1a6"), new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4607), "Elevate your wardrobe with our Chic Black Lace Tank Top. This versatile piece features elegant lace detailing and a sleek black design, perfect for adding a touch of sophistication to any outfit. Ideal for casual outings or dressed-up events.", "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/rbku1kdduiuluc8jq6qy.jpg", "Chic Black Lace Tank Top", 29.99m },
+                    { new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"), new Guid("f6e5d4c3-b2a1-4d5e-98c3-769b9b48adf7"), new Guid("48f0be7d-e69d-4933-b81c-0ff4b7106d5d"), new DateTime(2025, 4, 4, 8, 25, 33, 556, DateTimeKind.Utc).AddTicks(4591), "Experience elegance and comfort with our Beautiful Pink Lace Underwear. This stunning piece features delicate lace detailing and a lovely pink hue, making it a perfect choice for those who appreciate beauty and style. Ideal for everyday wear or special occasions.", "https://res.cloudinary.com/dqko9lpej/image/upload/v1742805902/jvvbilveebrqwey5vnn9.jpg", "Beautiful Pink Lace Underwear", 3.50m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductSize",
+                columns: new[] { "ProductId", "SizeId", "Quantity" },
+                values: new object[,]
+                {
+                    { new Guid("09595ab6-c4af-4223-812c-6d74f2767997"), new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"), 4 },
+                    { new Guid("09595ab6-c4af-4223-812c-6d74f2767997"), new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"), 3 },
+                    { new Guid("09595ab6-c4af-4223-812c-6d74f2767997"), new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"), 5 },
+                    { new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"), new Guid("ae2b67e1-df68-4e2d-9c3a-8b6e1e8b9f3c"), 5 },
+                    { new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"), new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da"), 6 },
+                    { new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"), new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"), 8 },
+                    { new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"), new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"), 10 },
+                    { new Guid("2352a676-800c-4e14-8ee7-1ca1fd32280c"), new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"), 7 },
+                    { new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"), new Guid("be1e8a73-6b95-4e2e-9673-d4c5a4e8b0da"), 7 },
+                    { new Guid("a1b2c3d4-e5f6-4a1b-9e2e-8d5c2d5f0a7e"), new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"), 4 },
+                    { new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"), new Guid("c38c1b69-b3b4-4a1b-9e2e-8d5c2d5f0a7e"), 4 },
+                    { new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"), new Guid("d1b82e13-25c1-4d5e-98c3-769b9b48adf7"), 3 },
+                    { new Guid("e9c8d216-5c64-4f78-8487-41dc0a29c77e"), new Guid("e2a05d49-c2c4-4ad2-9ae3-f3d1c6a07cb2"), 5 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -399,6 +470,21 @@ namespace BeautyLingerie.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderProducts_OrderId",
+                table: "OrderProducts",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderProducts_ProductId",
+                table: "OrderProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderProducts_SizeId",
+                table: "OrderProducts",
+                column: "SizeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -409,13 +495,8 @@ namespace BeautyLingerie.Data.Migrations
                 column: "ColorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_OrderId",
-                table: "Products",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_SizeId",
-                table: "Products",
+                name: "IX_ProductSize_SizeId",
+                table: "ProductSize",
                 column: "SizeId");
 
             migrationBuilder.CreateIndex(
@@ -448,10 +529,22 @@ namespace BeautyLingerie.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "OrderProducts");
+
+            migrationBuilder.DropTable(
+                name: "ProductSize");
+
+            migrationBuilder.DropTable(
                 name: "WishList");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
 
             migrationBuilder.DropTable(
                 name: "Customers");
@@ -467,12 +560,6 @@ namespace BeautyLingerie.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Colors");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Sizes");
         }
     }
 }

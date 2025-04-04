@@ -17,7 +17,8 @@ namespace BeautyLingerie.Data
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<WishList> WishList { get; set; }
-       
+        public DbSet<ProductSize> ProductSize { get; set; }
+
         public BeautyLingerieDbContext(DbContextOptions<BeautyLingerieDbContext> options) : base(options)
         {
 
@@ -31,6 +32,7 @@ namespace BeautyLingerie.Data
             modelBuilder.ApplyConfiguration(new ColorConfiguration());
             modelBuilder.ApplyConfiguration(new CategoriesConfiguration());
             modelBuilder.ApplyConfiguration(new SizesConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductSizesConfiguration());
 
             modelBuilder.Entity<OrderProduct>()
                .HasOne(op => op.Order)
@@ -41,6 +43,19 @@ namespace BeautyLingerie.Data
                 .HasOne(op => op.Product)
                 .WithMany(p => p.OrderProducts)
                 .HasForeignKey(op => op.ProductId);
+
+            modelBuilder.Entity<ProductSize>()
+    .HasKey(ps => new { ps.ProductId, ps.SizeId });
+
+            modelBuilder.Entity<ProductSize>()
+                .HasOne(ps => ps.Product)
+                .WithMany(p => p.ProductSizes)
+                .HasForeignKey(ps => ps.ProductId);
+
+            modelBuilder.Entity<ProductSize>()
+                .HasOne(ps => ps.Size)
+                .WithMany(s => s.ProductSizes)
+                .HasForeignKey(ps => ps.SizeId);
 
 
         }

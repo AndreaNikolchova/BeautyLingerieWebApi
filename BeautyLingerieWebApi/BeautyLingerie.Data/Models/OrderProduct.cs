@@ -17,7 +17,10 @@ namespace BeautyLingerie.Data.Models
         public Guid ProductId { get; set; }
         public Product Product { get; set; }
 
-      
+        [ForeignKey(nameof(Size))]
+        public Guid SizeId { get; set; }
+        public Size Size { get; set; }
+
         [Required]
         public int Quantity { get; set; }
 

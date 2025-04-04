@@ -10,7 +10,8 @@
         public Product()
         {
             ProductId = Guid.NewGuid();
-            this.OrderProducts = new List<OrderProduct>();  
+            OrderProducts = new List<OrderProduct>();
+            ProductSizes = new List<ProductSize>();
         }
 
         [Key]
@@ -28,26 +29,21 @@
         public decimal Price { get; set; }
 
         [Required]
-        public int Quantity { get; set; }
-
-        [Required]
         public string ImageUrl { get; set; } = null!;
 
         [ForeignKey(nameof(Category))]
         public Guid CategoryId { get; set; }
         public Category Category { get; set; } = null!;
 
-        [ForeignKey(nameof(Size))]
-        public Guid SizeId { get; set; }
-        public Size Size { get; set; }
-
         [ForeignKey(nameof(Color))]
         public Guid ColorId { get; set; }
-        public Color Color { get; set; }
+        public Color Color { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
 
-       
         public List<OrderProduct> OrderProducts { get; set; }
+
+        public List<ProductSize> ProductSizes { get; set; }
     }
+
 }

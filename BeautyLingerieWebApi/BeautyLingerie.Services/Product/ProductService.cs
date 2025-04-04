@@ -5,6 +5,7 @@
     using BeautyLingerie.Services.MediaService.Contracts;
     using BeautyLingerie.Services.Product.Contacts;
     using BeautyLingerie.ViewModels.Product;
+    using BeautyLingerie.ViewModels.Size;
     using Microsoft.EntityFrameworkCore;
    
     public class ProductService : IProductService
@@ -19,69 +20,77 @@
         }
         public async Task<IEnumerable<ProductViewModel>> GetAllAsync()
         {
+            var products = await dbContext.Products
+                .Where(p => p.ProductSizes.Sum(ps => ps.Quantity) > 0) 
+                .Select(p => new ProductViewModel
+                {
+                    Id = p.ProductId,
+                    Name = p.Name,
+                    ImageUrl = p.ImageUrl,
+                    Price = p.Price,
+                    Quantity = p.ProductSizes.Sum(ps => ps.Quantity)
+                })
+                .AsNoTracking()
+                .ToListAsync();
 
-            List<ProductViewModel> products = await dbContext.Products.Select(p => new ProductViewModel
-            {
-                Id = p.ProductId,
-                Name = p.Name,
-                ImageUrl = p.ImageUrl,
-                Price = p.Price,
-                Quantity = p.Quantity
-            }
-            ).Where(p=>p.Quantity>0)
-            .AsNoTracking()
-            .ToListAsync();
-            
             return products;
-
         }
+
         public async Task<ProductDetailsViewModel> GetProductByIdAsync(Guid productId)
         {
             try
             {
-                var product = await dbContext.Products.Where(p => p.ProductId == productId).Select(p => new ProductDetailsViewModel
-                {
-                    Id = p.ProductId,
-                    Name = p.Name,
-                    Description = p.Description,
-                    ImageUrl = p.ImageUrl,
-                    Price = p.Price,
-                    ColorName = p.Color.Name,
-                    CategoryName = p.Category.Name,
-                    Size = p.Size.Name,
-                    QuantityAll = p.Quantity
-                }).FirstOrDefaultAsync();
+                var product = await dbContext.Products
+                    .Where(p => p.ProductId == productId)
+                    .Select(p => new ProductDetailsViewModel
+                    {
+                        Id = p.ProductId,
+                        Name = p.Name,
+                        Description = p.Description,
+                        ImageUrl = p.ImageUrl,
+                        Price = p.Price,
+                        ColorName = p.Color.Name,
+                        CategoryName = p.Category.Name,
+                        QuantityAll = p.ProductSizes.Sum(ps => ps.Quantity), 
+                        Sizes = p.ProductSizes.Select(ps => new SizeQuantityViewModel
+                        {
+                            SizeName = ps.Size.Name,
+                            Quantity = ps.Quantity
+                        }).ToList()
+                    }).FirstOrDefaultAsync();
 
-              
                 return product;
-
             }
             catch
             {
                 return null;
             }
-
         }
+
         public async Task<ProductDetailsViewModel> GetProductByNameAsync(string name)
         {
             try
             {
+                var product = await dbContext.Products
+                    .Where(p => p.Name == name)
+                    .Select(p => new ProductDetailsViewModel
+                    {
+                        Id = p.ProductId,
+                        Name = p.Name,
+                        Description = p.Description,
+                        ImageUrl = p.ImageUrl,
+                        Price = p.Price,
+                        ColorName = p.Color.Name,
+                        CategoryName = p.Category.Name,
+                        QuantityAll = p.ProductSizes.Sum(ps => ps.Quantity),
+                        Sizes = p.ProductSizes.Select(ps => new SizeQuantityViewModel
+                        {
+                            SizeName = ps.Size.Name,
+                            Quantity = ps.Quantity
+                        }).ToList()
+                    }).FirstOrDefaultAsync();
 
-            var product = await dbContext.Products.Where(p => p.Name == name).Select(p => new ProductDetailsViewModel
-            {
-                Id = p.ProductId,
-                Name = p.Name,
-                Description = p.Description,
-                ImageUrl = p.ImageUrl,
-                Price = p.Price,
-                ColorName = p.Color.Name,
-                CategoryName = p.Category.Name,
-                Size = p.Size.Name,
-                QuantityAll = p.Quantity
-            }).FirstOrDefaultAsync();
-           
-          
-            return product;
+                return product;
             }
             catch
             {
@@ -91,20 +100,22 @@
         }
         public async Task<IEnumerable<ProductViewModel>> GetProductsByCategoryNameAsync(string categoryName)
         {
+            var products = await dbContext.Products
+                .Where(p => p.Category.Name == categoryName && p.ProductSizes.Sum(ps => ps.Quantity) > 0)
+                .Select(p => new ProductViewModel
+                {
+                    Id = p.ProductId,
+                    Name = p.Name,
+                    ImageUrl = p.ImageUrl,
+                    Price = p.Price,
+                    Quantity = p.ProductSizes.Sum(ps => ps.Quantity)
+                })
+                .AsNoTracking()
+                .ToListAsync();
 
-            List<ProductViewModel> products = await dbContext.Products.Where(p => p.Category.Name == categoryName && p.Quantity>0).Select(p => new ProductViewModel
-            {
-                Id = p.ProductId,
-                Name = p.Name,
-                ImageUrl = p.ImageUrl,
-                Price = p.Price,
-            }
-            )
-            .AsNoTracking()
-            .ToListAsync();
-           
             return products;
         }
+
         public async Task<IEnumerable<ProductViewModel>> GetNewestProducts()
         {
 
@@ -123,40 +134,41 @@
 
         public async Task AddProductAsync(AddProductViewModel model)
         {
-            var category = await this.dbContext.Categories.Where(c => c.Name == model.Category).FirstOrDefaultAsync();
-            if(category == null)
-            {
-                category = new Category()
-                {
-                    Name = model.Category
-                };
-              
-            }
-            var size = await this.dbContext.Sizes.Where(s=>s.Name == model.Size).FirstOrDefaultAsync();
-            if(size == null)
-            {
-                size = new Size()
-                {
-                    Name = model.Size
-                };
-            }
-           
-            var picture = await this.mediaService.UploadPictureAsync(model.Photo, model.Name);
-            Product product = new Product()
+            var category = await dbContext.Categories.FirstOrDefaultAsync(c => c.Name == model.Category)
+                            ?? new Category { Name = model.Category };
+
+            var color = await dbContext.Colors.FirstOrDefaultAsync(c => c.Name == model.Color)
+                            ?? new Color { Name = model.Color };
+
+            var picture = await mediaService.UploadPictureAsync(model.Photo, model.Name);
+
+            var product = new Product
             {
                 Name = model.Name,
-                ImageUrl = picture,
                 Description = model.Description,
-                Size = size,
-                Quantity = model.Quantity,
+                ImageUrl = picture,
                 Price = model.Price,
-            
+                Category = category,
+                Color = color,
+                CreatedOn = DateTime.UtcNow
             };
-           
+
+         
+            foreach (var sizeEntry in model.SizesWithQuantities)
+            {
+                var size = await dbContext.Sizes.FirstOrDefaultAsync(s => s.Name == sizeEntry.Key)
+                           ?? new Size { Name = sizeEntry.Key };
+
+                product.ProductSizes.Add(new ProductSize
+                {
+                    Size = size,
+                    Quantity = sizeEntry.Value
+                });
+            }
+
             await dbContext.Products.AddAsync(product);
-            await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync();
-           
         }
+
     }
 }
