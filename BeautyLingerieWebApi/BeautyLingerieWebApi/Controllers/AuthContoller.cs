@@ -39,7 +39,7 @@ namespace BeautyLingerie.WebApi.Controllers
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 var roles = await _userManager.GetRolesAsync(user);
-                var isAdmin = roles.Contains("Admin");
+                var isAdmin = roles.Contains("Administrator");
 
                 var token = _tokenService.GenerateJwtToken(model.Email);
                 return Ok(new
