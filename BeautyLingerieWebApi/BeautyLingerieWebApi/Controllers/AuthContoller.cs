@@ -37,13 +37,23 @@ namespace BeautyLingerie.WebApi.Controllers
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
             if (result.Succeeded)
             {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                var roles = await _userManager.GetRolesAsync(user);
+                var isAdmin = roles.Contains("Admin");
+
                 var token = _tokenService.GenerateJwtToken(model.Email);
-                return Ok(new { Email = model.Email ,AccessToken = token });
+                return Ok(new
+                {
+                    Email = model.Email,
+                    AccessToken = token,
+                    IsAdmin = isAdmin
+                });
             }
 
             return Unauthorized("Invalid login");
         }
 
+
     }
-    
+
 }
