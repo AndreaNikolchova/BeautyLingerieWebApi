@@ -42,18 +42,18 @@ namespace BeautyLingerie.WebApi.Extention
                     serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 var configuration = serviceProvider.GetRequiredService<IConfiguration>();
 
-               
+
                 var task = Task.Run(async () =>
                 {
-                   
+
                     if (!await roleManager.RoleExistsAsync("Administrator"))
                     {
-                       
+
                         IdentityRole role = new IdentityRole("Administrator");
                         await roleManager.CreateAsync(role);
                     }
 
-                  
+
                     IdentityUser adminUser = await userManager.FindByEmailAsync(email);
                     if (adminUser == null)
                     {
@@ -69,7 +69,7 @@ namespace BeautyLingerie.WebApi.Extention
                             throw new InvalidOperationException("Failed to create admin user.");
                         }
 
-                     
+
                         adminUser = await userManager.FindByEmailAsync(email);
                     }
 

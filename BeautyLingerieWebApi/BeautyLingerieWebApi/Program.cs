@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using Amazon.S3;
 using BeautyLingerie.Data;
 using BeautyLingerie.WebApi.Extention;
 using BeautyLingerie.Services.Product.Contacts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.DataProtection;
-using CloudinaryDotNet;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using BeautyLingerie.WebApi.Controllers;
+using BeautyLingerie.Services.Token.Contracts;
+using BeautyLingerie.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,76 +18,80 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+    options.SwaggerDoc("v1", new OpenApiInfo()
     {
         Title = "BeautyLingerieApi",
-        Version="v1",
+        Version = "v1",
     });
-    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
-        In= Microsoft.OpenApi.Models.ParameterLocation.Header,
+        In = ParameterLocation.Header,
         Description = "Please enter a token",
         Name = "Authorization",
-        Type= Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Type = SecuritySchemeType.Http,
         BearerFormat = "JWT",
         Scheme = "bearer"
     });
-    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
-    {{
-        new OpenApiSecurityScheme
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
-            Reference = new OpenApiReference
+            new OpenApiSecurityScheme
             {
-                Type = ReferenceType.SecurityScheme,
-                Id = "Bearer",
-            }
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] { }
         }
-        ,[]
-        }
-    }) ;
+    });
 });
 
 builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddAuthorization();
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
-  
-    options.Password.RequireUppercase = false; 
-    options.Password.RequireNonAlphanumeric = false; 
-    options.Password.RequiredLength = 6; 
-  
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
 })
 .AddEntityFrameworkStores<BeautyLingerieDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
-builder.Services.AddAWSService<IAmazonS3>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]))
+    };
+});
 
-builder.Services.AddApplicationServices(typeof(IProductService));
-Account cloudinaryCredentials = new Account(
-        builder.Configuration["Cloudinary:CloudName"],
-        builder.Configuration["Cloudinary:ApiKey"],
-        builder.Configuration["Cloudinary:ApiSecret"]
-      
-    );
-
-Cloudinary cloudinary = new Cloudinary(cloudinaryCredentials);
-builder.Services.AddSingleton(cloudinary);
-
-
+builder.Services.AddAuthorization();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost5173",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowLocalhost5179", policy =>
+    {
+        policy.WithOrigins("http://localhost:5179")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
+
+builder.Services.AddSingleton<ITokenService, TokenService>();
 
 var app = builder.Build();
 
@@ -96,12 +102,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowLocalhost5179");
 
-app.UseCors("AllowLocalhost5173");
-
-app.UseAuthorization();
 app.UseAuthentication();
-app.SeedAdministrator(builder.Configuration["Admin:Email"]);
+app.UseAuthorization();
 
 app.MapControllers();
 
