@@ -10,6 +10,7 @@ using System.Text;
 using BeautyLingerie.WebApi.Controllers;
 using BeautyLingerie.Services.Token.Contracts;
 using BeautyLingerie.Services.Token;
+using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,16 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+builder.Services.AddApplicationServices(typeof(IProductService));
+Account cloudinaryCredentials = new Account(
+        builder.Configuration["Cloudinary:CloudName"],
+        builder.Configuration["Cloudinary:ApiKey"],
+        builder.Configuration["Cloudinary:ApiSecret"]
+
+    );
+
+Cloudinary cloudinary = new Cloudinary(cloudinaryCredentials);
+builder.Services.AddSingleton(cloudinary);
 
 builder.Services.AddDbContext<BeautyLingerieDbContext>(options =>
 {
@@ -81,17 +92,16 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
+builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost5179", policy =>
+    options.AddPolicy("AllowLocalhost", policy =>
     {
         policy.WithOrigins("http://localhost:5179")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
-
-builder.Services.AddSingleton<ITokenService, TokenService>();
 
 var app = builder.Build();
 
@@ -102,7 +112,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowLocalhost5179");
+app.UseCors("AllowLocalhost");
 
 app.UseAuthentication();
 app.UseAuthorization();
