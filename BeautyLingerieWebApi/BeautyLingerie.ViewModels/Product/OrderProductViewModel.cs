@@ -3,7 +3,7 @@
     public class OrderProductViewModel
     {
         public Guid ProductId { get; set; } 
-        public Guid SizeId { get; set; }    
+        public string SelectedSize { get; set; }    
         public int Quantity { get; set; }
     }
 }

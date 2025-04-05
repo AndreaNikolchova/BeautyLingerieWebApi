@@ -38,7 +38,7 @@
                     .Include(ps => ps.Product)
                     .FirstOrDefaultAsync(ps =>
                         ps.ProductId == productModel.ProductId &&
-                        ps.SizeId == productModel.SizeId);
+                        ps.SizeId == this.dbContext.Sizes.First(x=>x.Name == productModel.SelectedSize).SizeId);
 
                 if (productSize != null && productSize.Quantity >= productModel.Quantity)
                 {
@@ -57,7 +57,7 @@
                 else
                 {
                   
-                    throw new InvalidOperationException("Недостатъчна наличност или липсващ размер.");
+                    throw new InvalidOperationException();
                 }
             }
 
