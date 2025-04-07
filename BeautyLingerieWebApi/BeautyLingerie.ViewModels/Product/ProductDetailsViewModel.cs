@@ -17,5 +17,7 @@ namespace BeautyLingerie.ViewModels.Product
         public List<SizeQuantityViewModel> Sizes { get; set; } = new();
         public string CategoryName { get; set; } = null!;
         public int QuantityAll { get; set; } 
+        public int ReviewAverage { get; set; }
+        public int ReviewCount { get; set; }
     }
 }
