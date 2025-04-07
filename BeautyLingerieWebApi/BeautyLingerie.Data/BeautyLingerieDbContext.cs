@@ -16,8 +16,11 @@ namespace BeautyLingerie.Data
         public DbSet<Size> Sizes { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<WishList> WishList { get; set; }
         public DbSet<ProductSize> ProductSize { get; set; }
+
 
         public BeautyLingerieDbContext(DbContextOptions<BeautyLingerieDbContext> options) : base(options)
         {
@@ -57,6 +60,9 @@ namespace BeautyLingerie.Data
                 .WithMany(s => s.ProductSizes)
                 .HasForeignKey(ps => ps.SizeId);
 
+            modelBuilder.Entity<Review>()
+        .HasIndex(r => new { r.ProductId, r.UserId })
+        .IsUnique();
 
         }
     }
