@@ -10,6 +10,7 @@ namespace BeautyLingerie.ViewModels.Review
     public class ReviewEditViewModel
     {
         public Guid Id { get; set; }
+       
 
         [Range(1, 5)]
         public int Rating { get; set; }

@@ -54,6 +54,7 @@
             return new ReviewViewModel
             {
                 Id = review.Id,
+                ProductId = review.ProductId,
                 Rating = review.Rating,
                 Comment = review.Comment,
                 CreatedAt = review.CreatedAt,
@@ -74,6 +75,7 @@
             return reviews.Select(r => new ReviewViewModel
             {
                 Id = r.Id,
+                ProductId = r.ProductId,
                 Rating = r.Rating,
                 Comment = r.Comment,
                 CreatedAt = r.CreatedAt,
@@ -94,6 +96,7 @@
             return reviews.Select(r => new ReviewViewModel
             {
                 Id = r.Id,
+                ProductId = r.ProductId,
                 Rating = r.Rating,
                 Comment = r.Comment,
                 CreatedAt = r.CreatedAt,
