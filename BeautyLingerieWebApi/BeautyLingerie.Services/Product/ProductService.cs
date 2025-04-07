@@ -7,7 +7,7 @@
     using BeautyLingerie.ViewModels.Product;
     using BeautyLingerie.ViewModels.Size;
     using Microsoft.EntityFrameworkCore;
-   
+
     public class ProductService : IProductService
     {
         public BeautyLingerieDbContext dbContext { get; set; }
@@ -21,7 +21,7 @@
         public async Task<IEnumerable<ProductViewModel>> GetAllAsync()
         {
             var products = await dbContext.Products
-                .Where(p => p.ProductSizes.Sum(ps => ps.Quantity) > 0) 
+                .Where(p => p.ProductSizes.Sum(ps => ps.Quantity) > 0)
                 .Select(p => new ProductViewModel
                 {
                     Id = p.ProductId,
@@ -43,22 +43,29 @@
                 var product = await dbContext.Products
                     .Where(p => p.ProductId == productId)
                     .Select(p => new ProductDetailsViewModel
-                    {
-                        Id = p.ProductId,
-                        Name = p.Name,
-                        Description = p.Description,
-                        ImageUrl = p.ImageUrl,
-                        Price = p.Price,
-                        ColorName = p.Color.Name,
-                        CategoryName = p.Category.Name,
-                        QuantityAll = p.ProductSizes.Sum(ps => ps.Quantity), 
-                        Sizes = p.ProductSizes.Select(ps => new SizeQuantityViewModel
-                        {
-                            SizeName = ps.Size.Name,
-                            Quantity = ps.Quantity
-
-                        }).ToList()
-                    }).FirstOrDefaultAsync();
+                         {
+                             Id = p.ProductId,
+                             Name = p.Name,
+                             Description = p.Description,
+                             ImageUrl = p.ImageUrl,
+                             Price = p.Price,
+                             ColorName = p.Color.Name,
+                             CategoryName = p.Category.Name,
+                             QuantityAll = p.ProductSizes.Sum(ps => ps.Quantity),
+                             Sizes = p.ProductSizes.Select(ps => new SizeQuantityViewModel
+                             {
+                                 SizeName = ps.Size.Name,
+                                 Quantity = ps.Quantity
+                             }).ToList(),
+                             ReviewAverage = (int)(dbContext.Reviews
+                                 .Where(r => r.ProductId == productId)
+                                 .Average(r => (double?)r.Rating) ?? 0),
+           
+                             ReviewCount = dbContext.Reviews
+                                 .Where(r => r.ProductId == productId)
+                                 .Count()
+                         })
+                         .FirstOrDefaultAsync();
 
                 return product;
             }
@@ -88,7 +95,14 @@
                         {
                             SizeName = ps.Size.Name,
                             Quantity = ps.Quantity
-                        }).ToList()
+                        }).ToList(),
+                        ReviewAverage = (int)(dbContext.Reviews
+                                 .Where(r => r.Product.Name == name)
+                                 .Average(r => (double?)r.Rating) ?? 0),
+
+                        ReviewCount = dbContext.Reviews
+                                 .Where(r => r.Product.Name == name)
+                                 .Count()
                     }).FirstOrDefaultAsync();
 
                 return product;
@@ -129,7 +143,7 @@
             }
             ).AsNoTracking()
             .ToListAsync();
-           
+
             return products;
         }
 
@@ -154,7 +168,7 @@
                 CreatedOn = DateTime.UtcNow
             };
 
-         
+
             foreach (var sizeEntry in model.SizesWithQuantities)
             {
                 var size = await dbContext.Sizes.FirstOrDefaultAsync(s => s.Name == sizeEntry.Key)
