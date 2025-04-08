@@ -22,6 +22,13 @@ namespace BeautyLingerie.WebApi.Controllers
             var model = await reviewService.GetReviewsByProductIdAsync(productId);
             return Ok(model);
         }
+        [HttpGet("/reviews/user/{email}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewViewModel>))]
+        public async Task<IActionResult> GetAllReviewsByUser(string email)
+        {
+            var model = await reviewService.GetReviewsByUserAsync(email);
+            return Ok(model);
+        }
         [HttpGet("/review/{reviewId}")]
       
         public async Task<IActionResult> GetReviewById(Guid reviewId)
@@ -43,7 +50,7 @@ namespace BeautyLingerie.WebApi.Controllers
             await reviewService.UpdateReviewAsync(model);
             return Ok();
         }
-        [HttpDelete("/reviews/delete/{productId}")]
+        [HttpDelete("/reviews/delete/{reviewId}")]
         public async Task<IActionResult> Delete(Guid reviewId)
         {
             await reviewService.DeleteReviewAsync(reviewId);
