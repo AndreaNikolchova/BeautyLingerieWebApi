@@ -15,7 +15,7 @@ namespace BeautyLingerie.Services.Review.Contracts
 
         Task<IEnumerable<ReviewViewModel>> GetReviewsByProductIdAsync(Guid productId);
 
-        Task<IEnumerable<ReviewViewModel>> GetReviewsByUserIdAsync(string userId);
+        Task<IEnumerable<ReviewViewModel>> GetReviewsByUserAsync(string email);
 
         Task<bool> UpdateReviewAsync(ReviewEditViewModel model);
 

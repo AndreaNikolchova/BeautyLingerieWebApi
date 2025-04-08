@@ -85,11 +85,11 @@
             });
         }
 
-        public async Task<IEnumerable<ReviewViewModel>> GetReviewsByUserIdAsync(string userId)
+        public async Task<IEnumerable<ReviewViewModel>> GetReviewsByUserAsync(string email)
         {
             var reviews = await dbContext.Reviews
                 .Include(r => r.User)
-                .Where(r => r.UserId == userId)
+                .Where(r => r.UserId == dbContext.Users.Where(u=>u.Email==email).First().Id)
                 .OrderByDescending(r => r.CreatedAt)
                 .ToListAsync();
 
