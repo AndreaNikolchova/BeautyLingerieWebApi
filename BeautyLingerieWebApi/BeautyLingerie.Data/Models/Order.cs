@@ -21,7 +21,7 @@ namespace BeautyLingerie.Data.Models
         [Required]
         public DateTime CreatedOn { get; set; }
 
-        public Guid? UserId { get; set; }
+        public string? UserId { get; set; }
 
         [StringLength(255)]
         public string FullName { get; set; } = null!;
