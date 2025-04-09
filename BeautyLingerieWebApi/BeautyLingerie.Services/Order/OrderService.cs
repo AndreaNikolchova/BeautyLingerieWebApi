@@ -7,6 +7,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using BeautyLingerie.ViewModels.Product;
 
     public class OrderService : IOrderService
     {
@@ -66,6 +68,36 @@
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<OrderViewModel>> GetOrders(string email)
+        {
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                return Enumerable.Empty<OrderViewModel>();
+            }
+
+
+            return await dbContext.Orders
+                .Where(o => o.Email == user.Email)
+                .Include(o => o.OrderProducts)
+                    .ThenInclude(op => op.Product)
+                .Select(o => new OrderViewModel
+                {
+                    Id = o.OrderId,
+                    TotalSum = o.TotalSum,
+                    CreatedOn = o.CreatedOn,
+                    Products = o.OrderProducts.Select(op => new ProductViewModel
+                    {
+                        Id = op.ProductId,
+                        Name = op.Product.Name,
+                        Price = op.PriceAtOrderTime,
+                        Quantity = op.Quantity,
+                        ImageUrl = op.Product.ImageUrl,
+                    }).ToList(),
+                    Status = o.Status
+                    
+                }).ToListAsync();
+        }
 
     }
 }
