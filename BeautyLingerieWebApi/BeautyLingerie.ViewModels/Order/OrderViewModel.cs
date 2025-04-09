@@ -8,5 +8,6 @@ namespace BeautyLingerie.ViewModels.Order
         public decimal TotalSum { get; set; }
         public DateTime CreatedOn { get; set; }
         public List<ProductViewModel> Products { get; set; }
+        public string Status { get; set; } = null!;
     }
 }
