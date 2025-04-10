@@ -97,6 +97,7 @@
             {
                 Id = r.Id,
                 ProductId = r.ProductId,
+                ProductName = dbContext.Products.Where(x=>x.ProductId == r.ProductId).First().Name,
                 Rating = r.Rating,
                 Comment = r.Comment,
                 CreatedAt = r.CreatedAt,

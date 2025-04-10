@@ -10,6 +10,7 @@ namespace BeautyLingerie.ViewModels.Review
     {
         public Guid Id { get; set; }
         public Guid ProductId { get; set; }
+        public string ProductName { get; set; } = null!;    
         public int Rating { get; set; }
         public string? Comment { get; set; }
         public DateTime CreatedAt { get; set; }
