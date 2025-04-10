@@ -99,5 +99,33 @@
                 }).ToListAsync();
         }
 
+        public async Task<OrderViewModel?> GetOrderById(Guid orderId)
+        {
+            var order = await dbContext.Orders.Where(o=>o.OrderId==orderId)
+                .Include(o => o.OrderProducts)
+                      .ThenInclude(op => op.Product)
+                  .Select(o => new OrderViewModel
+                  {
+                      Id = o.OrderId,
+                      TotalSum = o.TotalSum,
+                      CreatedOn = o.CreatedOn,
+                      Products = o.OrderProducts.Select(op => new ProductViewModel
+                      {
+                          Id = op.ProductId,
+                          Name = op.Product.Name,
+                          Price = op.PriceAtOrderTime,
+                          Quantity = op.Quantity,
+                          ImageUrl = op.Product.ImageUrl,
+                      }).ToList(),
+                      Status = o.Status,
+                      ShippingAddress = o.ShippingAddress,
+                      FullName = o.FullName,
+                      PhoneNumber = o.PhoneNumber
+
+                  })
+                  .FirstOrDefaultAsync();
+
+            return order;
+        }
     }
 }

@@ -7,6 +7,6 @@ namespace BeautyLingerie.Services.Order.Contracts
     {
         Task AddGuestOrder(AddOrderGuestViewModel model);
         Task<IEnumerable<OrderViewModel>> GetOrders(string email);
-
+        Task<OrderViewModel> GetOrderById(Guid orderId);
     }
 }
